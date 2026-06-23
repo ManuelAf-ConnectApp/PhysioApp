@@ -1,0 +1,233 @@
+
+-- User table definition --
+
+CREATE TABLE UserEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    firstName TEXT NOT NULL,
+    lastName TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL
+);
+
+
+insertUser:
+INSERT OR REPLACE INTO UserEntity(firstName, lastName, email, password)
+VALUES ( ?, ?, ?, ?);
+
+getUserByEmailAndPassword:
+SELECT * FROM UserEntity
+WHERE email = ? AND password = ?;
+
+getUserById:
+SELECT * FROM UserEntity
+WHERE id = ?;
+
+selectAll:
+SELECT * FROM UserEntity;
+
+
+-- Patient table definition --
+
+CREATE TABLE PatientEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    firstName TEXT NOT NULL,
+    lastName TEXT NOT NULL,
+    birthDate TEXT NOT NULL,
+    dni TEXT NOT NULL UNIQUE,
+    phone TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    additionalInfo TEXT NOT NULL
+);
+
+insertPatient:
+INSERT OR REPLACE INTO PatientEntity(firstName, lastName, birthDate, dni, phone, email, additionalInfo)
+VALUES ( ?, ?, ?, ?, ?, ?, ?);
+
+getPatientById:
+SELECT * FROM PatientEntity
+WHERE id = ?;
+
+getPatientByEmail:
+SELECT * FROM PatientEntity
+WHERE email = ?;
+
+getPatientByDNI:
+SELECT * FROM PatientEntity
+WHERE dni = ?;
+
+getPatientByPhone:
+SELECT * FROM PatientEntity
+WHERE phone = ?;
+
+selectAllPatients:
+SELECT * FROM PatientEntity;
+
+searchPatientsByName:
+SELECT * FROM PatientEntity
+WHERE LOWER(firstName) LIKE ('%' || LOWER(:query) || '%') OR LOWER(lastName) LIKE ('%' || LOWER(:query) || '%');
+
+deletePatient:
+DELETE FROM PatientEntity
+WHERE id = ?;
+
+updatePatient:
+UPDATE PatientEntity
+SET firstName = ?, lastName = ?, birthDate = ?, dni = ?, phone = ?, email = ?, additionalInfo = ?
+WHERE id = ?;
+
+-- Professional table definition --
+
+CREATE TABLE ProfessionalEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    firstName TEXT NOT NULL,
+    lastName TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    collegiateNumber TEXT NOT NULL UNIQUE,
+    phone TEXT NOT NULL UNIQUE,
+    specialty TEXT NOT NULL,
+    additionalInfo TEXT NOT NULL
+);
+
+insertProfessional:
+INSERT OR REPLACE INTO ProfessionalEntity(firstName, lastName, email, collegiateNumber, phone, specialty, additionalInfo)
+VALUES ( ?, ?, ?, ?, ?, ?, ?);
+
+getProfessionalById:
+SELECT * FROM ProfessionalEntity
+WHERE id = ?;
+
+getProfessionalByEmail:
+SELECT * FROM ProfessionalEntity
+WHERE email = ?;
+
+getProfessionalByPhone:
+SELECT * FROM ProfessionalEntity
+WHERE phone = ?;
+
+getProfessionalByCollegiateNumber:
+SELECT * FROM ProfessionalEntity
+WHERE collegiateNumber = ?;
+
+updateProfessional:
+UPDATE ProfessionalEntity
+SET firstName = ?, lastName = ?, email = ?, collegiateNumber = ?, phone = ?, specialty = ?, additionalInfo = ?
+WHERE id = ?;
+
+selectAllProfessionals:
+SELECT * FROM ProfessionalEntity;
+
+deleteProfessional:
+DELETE FROM ProfessionalEntity
+WHERE id = ?;
+
+
+-- Report table definition --
+
+CREATE TABLE ReportEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    patientId INTEGER NOT NULL,
+    professionalId INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    date TEXT NOT NULL,
+    clinicalContent TEXT NOT NULL,
+    diagnosis TEXT NOT NULL,
+    treatment TEXT NOT NULL,
+    FOREIGN KEY(patientId) REFERENCES PatientEntity(id),
+    FOREIGN KEY(professionalId) REFERENCES ProfessionalEntity(id)
+);
+
+insertReport:
+INSERT OR REPLACE INTO ReportEntity(patientId, professionalId, title, date, clinicalContent, diagnosis, treatment)
+VALUES ( ?, ?, ?, ?, ?, ?, ?);
+
+updateReport:
+UPDATE ReportEntity
+SET patientId = ?, professionalId = ?, title = ?, date = ?, clinicalContent = ?, diagnosis = ?, treatment = ?
+WHERE id = ?;
+
+getReportsByPatientEmail:
+SELECT ReportEntity.*
+FROM ReportEntity
+JOIN PatientEntity ON ReportEntity.patientId = PatientEntity.id
+WHERE PatientEntity.email = ?;
+
+getReportsByProfessionalEmail:
+SELECT ReportEntity.*
+FROM ReportEntity
+JOIN ProfessionalEntity ON ReportEntity.professionalId = ProfessionalEntity.id
+WHERE ProfessionalEntity.email = ?;
+
+searchReports:
+SELECT ReportEntity.*
+FROM ReportEntity
+JOIN PatientEntity ON ReportEntity.patientId = PatientEntity.id
+WHERE LOWER(ReportEntity.title) LIKE ('%' || LOWER(:query) || '%')
+   OR LOWER(ReportEntity.clinicalContent) LIKE ('%' || LOWER(:query) || '%')
+   OR LOWER(PatientEntity.firstName) LIKE ('%' || LOWER(:query) || '%')
+   OR LOWER(PatientEntity.lastName) LIKE ('%' || LOWER(:query) || '%');
+
+selectAllReports:
+SELECT * FROM ReportEntity;
+
+deleteReport:
+DELETE FROM ReportEntity
+WHERE id = ?;
+
+-- Invoice table definition --
+
+CREATE TABLE InvoiceEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    invoiceNumber TEXT NOT NULL,
+    patientId INTEGER NOT NULL,
+    professionalId INTEGER NOT NULL,
+    amount REAL NOT NULL,
+    date TEXT NOT NULL,
+    concept TEXT NOT NULL,
+    isPaid INTEGER NOT NULL DEFAULT 0,
+    FOREIGN KEY(patientId) REFERENCES PatientEntity(id),
+    FOREIGN KEY(professionalId) REFERENCES ProfessionalEntity(id)
+);
+
+insertInvoice:
+INSERT OR REPLACE INTO InvoiceEntity(invoiceNumber, patientId, professionalId, amount, date, concept, isPaid)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+updateInvoice:
+UPDATE InvoiceEntity
+SET invoiceNumber = ?, patientId = ?, professionalId = ?, amount = ?, date = ?, concept = ?, isPaid = ?
+WHERE id = ?;
+
+getInvoicesByPatientEmail:
+SELECT InvoiceEntity.*
+FROM InvoiceEntity
+JOIN PatientEntity ON InvoiceEntity.patientId = PatientEntity.id
+WHERE PatientEntity.email = ?;
+
+getInvoicesByProfessionalEmail:
+SELECT InvoiceEntity.*
+FROM InvoiceEntity
+JOIN ProfessionalEntity ON InvoiceEntity.professionalId = ProfessionalEntity.id
+WHERE ProfessionalEntity.email = ?;
+
+getInvoiceByNumber:
+SELECT * FROM InvoiceEntity
+WHERE invoiceNumber = ?;
+
+getInvoicesByProfessionalName:
+SELECT InvoiceEntity.*
+FROM InvoiceEntity
+JOIN ProfessionalEntity ON InvoiceEntity.professionalId = ProfessionalEntity.id
+WHERE LOWER(ProfessionalEntity.firstName) LIKE ('%' || LOWER(:query) || '%') OR LOWER(ProfessionalEntity.lastName) LIKE ('%' || LOWER(:query) || '%');
+
+getInvoicesByPatientName:
+SELECT InvoiceEntity.*
+FROM InvoiceEntity
+JOIN PatientEntity ON InvoiceEntity.patientId = PatientEntity.id
+WHERE LOWER(PatientEntity.firstName) LIKE ('%' || LOWER(:query) || '%') OR LOWER(PatientEntity.lastName) LIKE ('%' || LOWER(:query) || '%');
+
+selectAllInvoices:
+SELECT * FROM InvoiceEntity;
+
+deleteInvoice:
+DELETE FROM InvoiceEntity
+WHERE id = ?;

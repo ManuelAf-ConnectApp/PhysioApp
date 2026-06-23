@@ -1,0 +1,33 @@
+# Project-wide ignore rules
+*.iml
+.DS_Store
+.idea/
+.gradle/
+.kotlin/
+**/build/
+
+# Android
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aar
+
+# iOS
+*.xcodeproj/
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+xcuserdata/
+DerivedData/
+
+# Compose Multiplatform
+.compose/
+
+# Others
+node_modules/
+*.swp
+*~

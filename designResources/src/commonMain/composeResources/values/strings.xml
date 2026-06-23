@@ -1,0 +1,198 @@
+<resources>
+    <string name="app_name">PhysioApp</string>
+    <string name="app_database_name" translatable="false">my_app_database.db</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="patient">Patient</string>
+    <string name="professional">Professional</string>
+    <string name="invoice">Invoice</string>
+    <string name="report">Report</string>
+    <string name="search_patient">Search Patient(s)</string>
+    <string name="search_professional">Search Professional(s)</string>
+    <string name="edit_report">Edit Report</string>
+    <string name="new_report">New Report</string>
+    <string name="home">Home</string>
+    <string name="logo">Logo</string>
+    <string name="back">Back</string>
+    <string name="menu">Menu</string>
+    <string name="notifications">Notifications</string>
+    <string name="toggle_password_visibility">Toggle password visibility</string>
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="forgot_password_instruction">Enter your email to receive a reset link.</string>
+    <string name="email">Email</string>
+    <string name="email_sent_success">Email sent successfully! Check your inbox.</string>
+    <string name="send_reset_link">Send Reset Link</string>
+    <string name="back_to_login">Back to Login</string>
+    <string name="error_email_empty">Email cannot be empty</string>
+    <string name="welcome_back">Welcome back, %s!</string>
+    <string name="whats_happening_today">Here's what's happening today.</string>
+    <string name="new_patient">New patient</string>
+    <string name="new_patient_desc">Register a new patient</string>
+    <string name="search_patient_desc">Locate existing patient</string>
+    <string name="new_professional">New professional</string>
+    <string name="new_professional_desc">Register a new professional</string>
+    <string name="search_professional_desc">Locate a professional</string>
+    <string name="create_report">Create Report</string>
+    <string name="create_report_desc">Generate a new medical report</string>
+    <string name="search_report">Search report(s)</string>
+    <string name="search_report_desc">Locate medical reports</string>
+    <string name="edit_report_desc">Modify existing reports</string>
+    <string name="create_invoice">Create invoice</string>
+    <string name="create_invoice_desc">Generate a new service invoice</string>
+    <string name="search_invoice">Search invoice(s)</string>
+    <string name="search_invoice_desc">Locate existing invoices</string>
+    <string name="edit_invoice">Edit invoices</string>
+    <string name="edit_invoice_desc">Modify generated invoices</string>
+    <string name="invoice_details">Invoice Details</string>
+    <string name="invoice_number">Invoice Number</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="date_format">Date (DD/MM/YYYY)</string>
+    <string name="concept">Concept</string>
+    <string name="amount_euro">Amount (€)</string>
+    <string name="is_paid">Is it paid?</string>
+    <string name="generate_invoice">Generate Invoice</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="professional_management_portal">Professional Management Portal</string>
+    <string name="email_placeholder">e.g. clinic@physio.com</string>
+    <string name="password">Password</string>
+    <string name="forgot_password_q">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="new_to_physioconnect">New to PhysioConnect?</string>
+    <string name="create_account">Create Account</string>
+    <string name="invalid_email_password">Invalid email or password</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="personal_info">Personal Information</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="dni">DNI</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="date_placeholder">DD/MM/YYYY</string>
+    <string name="contact">Contact</string>
+    <string name="phone">Phone</string>
+    <string name="additional_notes">Additional notes</string>
+    <string name="notes">Notes</string>
+    <string name="save_patient">Save Patient</string>
+    <string name="error_name_empty">Name cannot be empty</string>
+    <string name="error_name_too_short">Minimum 3 characters</string>
+    <string name="error_surname_empty">Surname cannot be empty</string>
+    <string name="error_dni_empty">DNI cannot be empty</string>
+    <string name="error_dni_invalid">Invalid DNI</string>
+    <string name="error_email_invalid">Invalid email</string>
+    <string name="error_birth_date_mandatory">Birth date is mandatory</string>
+    <string name="error_phone_mandatory">Phone is mandatory</string>
+    <string name="error_notes_mandatory">Notes are mandatory</string>
+    <string name="error_saving_patient">Error saving patient</string>
+    <string name="professional_info">Professional Information</string>
+    <string name="specialty">Specialty</string>
+    <string name="specialty_placeholder">e.g. Sports Physiotherapy</string>
+    <string name="collegiate_number">Collegiate Number</string>
+    <string name="collegiate_number_placeholder">Collegiate Number</string>
+    <string name="professional_email">Professional Email</string>
+    <string name="save_professional">Save Professional</string>
+    <string name="professional_saved">Professional saved successfully</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="logout">Logout</string>
+
+    <string name="close">Close</string>
+    <string name="about">About</string>
+    <string name="understood">Understood</string>
+    <string name="developed_by">Developed by:</string>
+    <string name="author_name">Manuel María Alconchel Fernández</string>
+    <string name="contact_incidents">Incident Contact:</string>
+    <string name="support_email">incidencia@connectapp.es</string>
+    <string name="license_label">License:</string>
+    <string name="apache_license">Apache License 2.0</string>
+
+    <string name="pdf_save_success">PDF saved successfully to downloads!</string>
+    <string name="pdf_generate_error">Error generating PDF</string>
+    <string name="search_report_placeholder">Search by title, content or patient...</string>
+    <string name="no_reports_found">No reports found</string>
+    <string name="generate_pdf">Generate PDF</string>
+
+    <string name="label_title">Title</string>
+    <string name="label_clinical_content">Clinical Content</string>
+    <string name="label_diagnosis">Diagnosis</string>
+    <string name="label_treatment">Treatment</string>
+
+    <string name="system_settings">System Settings</string>
+    <string name="database">Database</string>
+    <string name="database_management_desc">Manage your local data by importing or exporting the database.</string>
+    <string name="export_database">Export Database</string>
+    <string name="import_database">Import Database</string>
+    <string name="how_to_import_database">How should I import the database?</string>
+    <string name="database_to_import">Database to import</string>
+    <string name="database_import_guide">Database Import Guide</string>
+    <string name="database_import_instructions">To import a database correctly, the file must be of SQLite type and contain the necessary tables...</string>
+
+    <string name="report_details">Report Details</string>
+    <string name="report_title">Report Title</string>
+    <string name="report_title_placeholder">e.g. Initial Evaluation, Follow-up...</string>
+    <string name="update_report">Update Report</string>
+    <string name="save_report">Save Report</string>
+    <string name="error_saving_report">Error saving report</string>
+    <string name="report_saved_success">Report saved successfully</string>
+
+    <string name="clear_searches">Clear searches</string>
+    <string name="no_results_found">No results found</string>
+    <string name="patient_details">Patient Details</string>
+    <string name="professional_details">Professional Details</string>
+    <string name="edit">Edit</string>
+
+    <string name="specialty_musculoskeletal">Musculoskeletal or orthopedic physiotherapy</string>
+    <string name="specialty_sports">Sports physiotherapy</string>
+    <string name="specialty_neurological">Neurological physiotherapy</string>
+    <string name="specialty_respiratory">Respiratory physiotherapy</string>
+    <string name="specialty_pediatric">Pediatric physiotherapy</string>
+    <string name="specialty_geriatric">Geriatric physiotherapy</string>
+    <string name="specialty_pelvic">Pelvic floor and urogynaecological physiotherapy</string>
+    <string name="specialty_cardiovascular">Cardiovascular physiotherapy</string>
+    <string name="specialty_oncological">Oncological physiotherapy</string>
+    <string name="specialty_palliative">Palliative care physiotherapy</string>
+    <string name="specialty_chronic_pain">Chronic pain physiotherapy</string>
+    <string name="specialty_occupational">Occupational physiotherapy or ergonomics</string>
+    <string name="specialty_manual_therapy">Advanced manual therapy</string>
+    <string name="specialty_invasive">Invasive physiotherapy</string>
+
+    <string name="error_field_empty">This field cannot be empty</string>
+    <string name="error_too_short">Too short (min 3 chars)</string>
+    <string name="error_invalid_email">Invalid email</string>
+    <string name="error_invalid_phone">Invalid phone number</string>
+    <string name="error_invalid_dni">Invalid DNI/NIE format</string>
+    <string name="error_invalid_dni_letter">Invalid DNI/NIE letter</string>
+
+    <string name="pdf_date_label">DATE:</string>
+    <string name="pdf_patient_id_label">PATIENT ID:</string>
+    <string name="pdf_patient_label">PATIENT:</string>
+    <string name="pdf_professional_id_label">PROFESSIONAL ID:</string>
+    <string name="pdf_professional_label">PROFESSIONAL:</string>
+    <string name="pdf_diagnosis_label">DIAGNOSIS</string>
+    <string name="pdf_clinical_content_label">CLINICAL CONTENT</string>
+    <string name="pdf_treatment_label">TREATMENT</string>
+    <string name="pdf_invoice_title">INVOICE</string>
+    <string name="pdf_invoice_number_label">INVOICE NO:</string>
+    <string name="pdf_concept_label">CONCEPT</string>
+    <string name="pdf_total_amount_label">TOTAL AMOUNT:</string>
+    <string name="pdf_status_label">STATUS:</string>
+    <string name="pdf_paid_label">PAID</string>
+    <string name="pdf_pending_payment_label">PENDING PAYMENT</string>
+    <string name="pdf_report_header">PHYSIO APP - CLINICAL REPORT</string>
+    <string name="pdf_invoice_header">PHYSIO APP - INVOICE</string>
+    <string name="pdf_report_footer">This document is a clinical report generated automatically by PhysioApp.</string>
+    <string name="pdf_invoice_footer">This document is an invoice generated automatically by PhysioApp.</string>
+
+    <!-- Navigation IDs -->
+    <string name="id_new_patient" translatable="false">new_patient</string>
+    <string name="id_edit_patient" translatable="false">edit_patient</string>
+    <string name="id_search_patient" translatable="false">search_patient</string>
+    <string name="id_new_professional" translatable="false">new_professional</string>
+    <string name="id_search_professional" translatable="false">search_professional</string>
+    <string name="id_create_report" translatable="false">create_report</string>
+    <string name="id_search_report" translatable="false">search_report</string>
+    <string name="id_edit_report" translatable="false">edit_report</string>
+    <string name="id_create_invoice" translatable="false">create_invoice</string>
+    <string name="id_search_invoice" translatable="false">search_invoice</string>
+    <string name="id_edit_invoice" translatable="false">edit_invoice</string>
+</resources>
