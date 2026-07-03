@@ -133,12 +133,12 @@ class SearchPatientViewModel(
             try {
                 val results = getPatientListInBaseOnSearchCriteria()
                 if (results.isEmpty()) {
-                    _state.update { it.copy(isLoading = false, error = "No results found") }
+                    _state.update { it.copy(isLoading = false, error = "No se encontraron resultados") }
                 } else {
                     _state.update { it.copy(isLoading = false, results = results) }
                 }
             } catch (e: Exception) {
-                _state.update { it.copy(isLoading = false, error = "Unknown error: ${e.message}") }
+                _state.update { it.copy(isLoading = false, error = "No se encontraron resultados") }
             }
         }
     }
