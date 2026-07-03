@@ -1,5 +1,30 @@
+/*
+Author: Manuel María Alconchel Fernández
+E-mail: incidencias@connectapp.es
+Date: 30/06/2006
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 package com.connectapp.presentation.navigation
 
+import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
@@ -12,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.connectapp.presentation.MainViewModel
+import com.connectapp.presentation.platform
 import com.connectapp.presentation.edit_invoice.EditInvoiceScreen
 import com.connectapp.presentation.edit_patient.EditPatientScreen
 import com.connectapp.presentation.forgot_password.ForgotPasswordScreen
@@ -54,6 +80,8 @@ fun NavigationScreen(
         }
     }
 
+    val isIos = platform() == "iOS"
+
     NavDisplay(
         backStack = backStack,
         onBack = {
@@ -61,6 +89,32 @@ fun NavigationScreen(
                 backStack.removeLast()
                 val previousRoute = backStack.last() as NavigationRoute
                 viewModel.updateNavigationState(previousRoute)
+            }
+        },
+        transitionSpec = {
+            if (isIos) {
+                slideInHorizontally(
+                    initialOffsetX = { it },
+                    animationSpec = tween(500)
+                ) togetherWith slideOutHorizontally(
+                    targetOffsetX = { -it / 3 },
+                    animationSpec = tween(500)
+                )
+            } else {
+                fadeIn(animationSpec = tween(500)) togetherWith fadeOut(animationSpec = tween(500))
+            }
+        },
+        popTransitionSpec = {
+            if (isIos) {
+                slideInHorizontally(
+                    initialOffsetX = { -it / 3 },
+                    animationSpec = tween(500)
+                ) togetherWith slideOutHorizontally(
+                    targetOffsetX = { it },
+                    animationSpec = tween(500)
+                )
+            } else {
+                fadeIn(animationSpec = tween(500)) togetherWith fadeOut(animationSpec = tween(500))
             }
         },
         entryProvider = { key ->

@@ -16,7 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.connectapp.designresources.TokensResources
 import com.connectapp.domain.model.Patient
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun PatientItem(
@@ -34,8 +36,14 @@ internal fun PatientItem(
                 text = "${patient.firstName} ${patient.lastName}",
                 style = MaterialTheme.typography.titleMedium
             )
-            Text(text = "Email: ${patient.email}", style = MaterialTheme.typography.bodySmall)
-            Text(text = "Phone: ${patient.phone}", style = MaterialTheme.typography.bodySmall)
+            Text(
+                text = "${stringResource(TokensResources.email)}: ${patient.email}",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Text(
+                text = "${stringResource(TokensResources.phone)}: ${patient.phone}",
+                style = MaterialTheme.typography.bodySmall
+            )
         }
     }
 }
@@ -56,24 +64,24 @@ internal fun PatientDetails(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Patient Details",
+                text = stringResource(TokensResources.patientDetails),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
             )
             Button(onClick = onEditClick) {
-                Text("Edit")
+                Text(stringResource(TokensResources.edit))
             }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        DetailItem(label = "First Name", value = patient.firstName)
-        DetailItem(label = "Last Name", value = patient.lastName)
-        DetailItem(label = "DNI", value = patient.dni)
-        DetailItem(label = "Email", value = patient.email)
-        DetailItem(label = "Phone", value = patient.phone)
-        DetailItem(label = "Birth Date", value = patient.birthDate)
-        DetailItem(label = "Additional Info", value = patient.additionalInfo)
+        DetailItem(label = stringResource(TokensResources.firstName), value = patient.firstName)
+        DetailItem(label = stringResource(TokensResources.lastName), value = patient.lastName)
+        DetailItem(label = stringResource(TokensResources.dni), value = patient.dni)
+        DetailItem(label = stringResource(TokensResources.email), value = patient.email)
+        DetailItem(label = stringResource(TokensResources.phone), value = patient.phone)
+        DetailItem(label = stringResource(TokensResources.birthDate), value = patient.birthDate)
+        DetailItem(label = stringResource(TokensResources.additionalNotes), value = patient.additionalInfo)
     }
 }
 

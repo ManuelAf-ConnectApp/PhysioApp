@@ -11,10 +11,12 @@ import com.connectapp.domain.model.Invoice
 @Composable
 fun InvoiceItem(
     invoice: Invoice,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
+        onClick = onClick,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(

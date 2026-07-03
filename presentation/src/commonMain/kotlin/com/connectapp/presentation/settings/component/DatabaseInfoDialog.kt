@@ -50,7 +50,7 @@ fun DatabaseInfoDialog(
 
                 TableInfo(
                     tableName = "UserEntity",
-                    description = "Usuarios con acceso a la aplicación.",
+                    description = stringResource(TokensResources.userDescription),
                     attributes = listOf(
                         "id (INTEGER PRIMARY KEY AUTOINCREMENT)",
                         "firstName (TEXT NOT NULL)",
@@ -62,7 +62,7 @@ fun DatabaseInfoDialog(
 
                 TableInfo(
                     tableName = "PatientEntity",
-                    description = "Información de los pacientes.",
+                    description = stringResource(TokensResources.patientDescription),
                     attributes = listOf(
                         "id (INTEGER PRIMARY KEY AUTOINCREMENT)",
                         "firstName (TEXT NOT NULL)",
@@ -77,7 +77,7 @@ fun DatabaseInfoDialog(
 
                 TableInfo(
                     tableName = "ProfessionalEntity",
-                    description = "Especialistas y profesionales de la salud.",
+                    description = stringResource(TokensResources.professionalDescription),
                     attributes = listOf(
                         "id (INTEGER PRIMARY KEY AUTOINCREMENT)",
                         "firstName (TEXT NOT NULL)",
@@ -92,7 +92,7 @@ fun DatabaseInfoDialog(
 
                 TableInfo(
                     tableName = "ReportEntity",
-                    description = "Informes clínicos generados.",
+                    description = stringResource(TokensResources.reportDescription),
                     attributes = listOf(
                         "id (INTEGER PRIMARY KEY AUTOINCREMENT)",
                         "patientId (INTEGER NOT NULL, FK -> PatientEntity)",
@@ -107,7 +107,7 @@ fun DatabaseInfoDialog(
 
                 TableInfo(
                     tableName = "InvoiceEntity",
-                    description = "Facturas emitidas a pacientes.",
+                    description = stringResource(TokensResources.invoiceDescription),
                     attributes = listOf(
                         "id (INTEGER PRIMARY KEY AUTOINCREMENT)",
                         "patientId (INTEGER NOT NULL, FK -> PatientEntity)",
@@ -131,7 +131,7 @@ private fun TableInfo(
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(DimensResources.spacing8)) {
         Text(
-            text = "Tabla: $tableName",
+            text = stringResource(TokensResources.tableLabel, tableName),
             style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.secondary

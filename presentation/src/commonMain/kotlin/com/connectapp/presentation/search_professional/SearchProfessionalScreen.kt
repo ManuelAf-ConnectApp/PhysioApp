@@ -182,7 +182,7 @@ private fun SearchProfessionalScreenContent(
                     onCheckedChange = { onIntent(SearchProfessionalIntent.CheckAllProfessionalsClicked) },
                 )
 
-                Text(text = "Check all professionals")
+                Text(text = stringResource(TokensResources.checkAllProfessionals))
             }
 
 
@@ -220,13 +220,13 @@ private fun SearchProfessionalScreenContent(
                         onClick = { onIntent(SearchProfessionalIntent.ClearSearch) },
                     ) {
                         Text(
-                            "Limpiar búsquedas",
+                            stringResource(TokensResources.clearSearches),
                             textAlign = TextAlign.End
                         )
 
                         Icon(
                             imageVector = Icons.Filled.Delete,
-                            contentDescription = "Clear",
+                            contentDescription = stringResource(TokensResources.clearAction),
                         )
                     }
 
@@ -262,18 +262,18 @@ fun ProfessionalDetails(professional: ProfessionalUi) {
             .padding(DimensResources.spacing8)
     ) {
         Text(
-            text = "Professional Details",
+            text = stringResource(TokensResources.professionalDetails),
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = DimensResources.spacing16)
         )
 
-        DetailItem(label = "First Name", value = professional.firstName)
-        DetailItem(label = "Last Name", value = professional.lastName)
-        DetailItem(label = "Email", value = professional.email)
-        DetailItem(label = "Phone", value = professional.phone)
-        DetailItem(label = "Specialty", value = professional.specialty)
-        DetailItem(label = "Additional Info", value = professional.additionalInfo)
+        DetailItem(label = stringResource(TokensResources.firstName), value = professional.firstName)
+        DetailItem(label = stringResource(TokensResources.lastName), value = professional.lastName)
+        DetailItem(label = stringResource(TokensResources.email), value = professional.email)
+        DetailItem(label = stringResource(TokensResources.phone), value = professional.phone)
+        DetailItem(label = stringResource(TokensResources.specialty), value = professional.specialty)
+        DetailItem(label = stringResource(TokensResources.additionalNotes), value = professional.additionalInfo)
     }
 }
 

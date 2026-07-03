@@ -102,7 +102,7 @@
     <string name="developed_by">Developed by:</string>
     <string name="author_name">Manuel María Alconchel Fernández</string>
     <string name="contact_incidents">Incident Contact:</string>
-    <string name="support_email">incidencia@connectapp.es</string>
+    <string name="support_email">incidencias@connectapp.es</string>
     <string name="license_label">License:</string>
     <string name="apache_license">Apache License 2.0</string>
 
@@ -136,10 +136,25 @@
     <string name="report_saved_success">Report saved successfully</string>
 
     <string name="clear_searches">Clear searches</string>
+    <string name="clear_action">Clear</string>
     <string name="no_results_found">No results found</string>
     <string name="patient_details">Patient Details</string>
     <string name="professional_details">Professional Details</string>
     <string name="edit">Edit</string>
+    <string name="search">Search</string>
+    <string name="check_all_professionals">Check all professionals</string>
+    <string name="select_database_first">Select a database first</string>
+    <string name="table_label">Table: %s</string>
+    <string name="information">Information</string>
+    <string name="user_description">Users with access to the application.</string>
+    <string name="patient_description">Patient information.</string>
+    <string name="professional_description">Specialists and health professionals.</string>
+    <string name="report_description">Generated clinical reports.</string>
+    <string name="invoice_description">Invoices issued to patients.</string>
+    <string name="database_imported_success">Database imported successfully</string>
+    <string name="database_import_error">Error importing database</string>
+    <string name="database_exported_success">Database exported successfully to %s</string>
+    <string name="database_export_error">Error exporting database</string>
 
     <string name="specialty_musculoskeletal">Musculoskeletal or orthopedic physiotherapy</string>
     <string name="specialty_sports">Sports physiotherapy</string>
@@ -162,6 +177,8 @@
     <string name="error_invalid_phone">Invalid phone number</string>
     <string name="error_invalid_dni">Invalid DNI/NIE format</string>
     <string name="error_invalid_dni_letter">Invalid DNI/NIE letter</string>
+    <string name="error_invalid_password">Invalid password (min 6 characters)</string>
+    <string name="error_passwords_not_match">Passwords do not match</string>
 
     <string name="pdf_date_label">DATE:</string>
     <string name="pdf_patient_id_label">PATIENT ID:</string>

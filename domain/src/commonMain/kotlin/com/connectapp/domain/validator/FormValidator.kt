@@ -94,6 +94,14 @@ class FormValidator : Validator {
         }
     }
 
+    override fun validatePassword(password: String): ValidationError? {
+        return when {
+            password.isBlank() -> ValidationError.FIELD_EMPTY
+            password.length < 6 -> ValidationError.INVALID_PASSWORD
+            else -> null
+        }
+    }
+
     override fun isValidDni(dni: String): Boolean {
         if (dni.length != 9) return false
 

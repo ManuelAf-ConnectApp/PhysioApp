@@ -1,3 +1,21 @@
+/*
+Author: Manuel María Alconchel Fernández
+E-mail: incidencias@connectapp.es
+Date: 30/06/2006
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 package com.connectapp.presentation.register
 
 import androidx.compose.foundation.layout.Box
@@ -6,8 +24,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -26,11 +46,11 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.connectapp.designresources.TokensResources
 import com.connectapp.designresources.DimensResources
 import com.connectapp.presentation.component.CustomOutlinedTextField
+import com.connectapp.presentation.util.asString
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -75,8 +95,13 @@ fun RegisterScreenContent(
     onIntent: (RegisterIntent) -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
+    val scrollState = rememberScrollState()
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .verticalScroll(scrollState)
+    ) {
 
         Spacer(modifier = Modifier.height(DimensResources.spacing16))
 
@@ -95,6 +120,10 @@ fun RegisterScreenContent(
             value = state.firstName,
             onValueChange = { onIntent(RegisterIntent.FirstNameChanged(it)) },
             label = stringResource(TokensResources.firstName),
+            isError = state.firstNameError != null,
+            supportingText = state.firstNameError?.let { error ->
+                { Text(text = error.asString()) }
+            },
             keyboardActions = KeyboardActions(
                 onNext = {
                     focusManager.moveFocus(FocusDirection.Next)
@@ -113,6 +142,10 @@ fun RegisterScreenContent(
             onValueChange = { onIntent(RegisterIntent.LastNameChanged(it)) },
             label = stringResource(TokensResources.lastName),
             modifier = Modifier.fillMaxWidth(),
+            isError = state.lastNameError != null,
+            supportingText = state.lastNameError?.let { error ->
+                { Text(text = error.asString()) }
+            },
             shape = MaterialTheme.shapes.large,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Text,
@@ -132,6 +165,10 @@ fun RegisterScreenContent(
             onValueChange = { onIntent(RegisterIntent.EmailChanged(it)) },
             label = stringResource(TokensResources.email),
             modifier = Modifier.fillMaxWidth(),
+            isError = state.emailError != null,
+            supportingText = state.emailError?.let { error ->
+                { Text(text = error.asString()) }
+            },
             shape = MaterialTheme.shapes.large,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
@@ -151,6 +188,10 @@ fun RegisterScreenContent(
             value = state.password,
             onValueChange = { onIntent(RegisterIntent.PasswordChanged(it)) },
             label = stringResource(TokensResources.password),
+            isError = state.passwordError != null,
+            supportingText = state.passwordError?.let { error ->
+                { Text(text = error.asString()) }
+            },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
                 imeAction = ImeAction.Next
@@ -172,6 +213,10 @@ fun RegisterScreenContent(
             onValueChange = { onIntent(RegisterIntent.ConfirmPasswordChanged(it)) },
             label = stringResource(TokensResources.confirmPassword),
             modifier = Modifier.fillMaxWidth(),
+            isError = state.confirmPasswordError != null,
+            supportingText = state.confirmPasswordError?.let { error ->
+                { Text(text = error.asString()) }
+            },
             shape = MaterialTheme.shapes.large,
             isPassword = true,
             isPasswordVisible = state.isConfirmPasswordVisible,
@@ -195,7 +240,8 @@ fun RegisterScreenContent(
 
         Button(
             onClick = { onIntent(RegisterIntent.RegisterClicked) },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            enabled = state.isFormValid
         ) {
             Text(stringResource(TokensResources.createAccount))
         }

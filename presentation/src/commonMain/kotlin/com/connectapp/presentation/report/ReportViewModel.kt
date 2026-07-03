@@ -24,7 +24,7 @@ class ReportViewModel(
     private val saveReportUseCase: SaveReportUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(ReportState())
+    private val _state = MutableStateFlow(ReportState.EMPTY)
     val state: StateFlow<ReportState> = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<ReportEffect>()
@@ -33,6 +33,10 @@ class ReportViewModel(
     private var searchJob: Job? = null
 
     init {
+        _state.update {
+            ReportState.EMPTY
+        }
+
         loadProfessionals()
     }
 

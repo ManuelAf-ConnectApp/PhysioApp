@@ -130,10 +130,21 @@ object TokensResources {
     val reportSavedSuccess: StringResource = Res.string.report_saved_success
 
     val clearSearches: StringResource = Res.string.clear_searches
+    val clearAction: StringResource = Res.string.clear_action
     val noResultsFound: StringResource = Res.string.no_results_found
     val patientDetails: StringResource = Res.string.patient_details
     val professionalDetails: StringResource = Res.string.professional_details
     val edit: StringResource = Res.string.edit
+    val search: StringResource = Res.string.search
+    val checkAllProfessionals: StringResource = Res.string.check_all_professionals
+    val selectDatabaseFirst: StringResource = Res.string.select_database_first
+    val tableLabel: StringResource = Res.string.table_label
+    val information: StringResource = Res.string.information
+    val userDescription: StringResource = Res.string.user_description
+    val patientDescription: StringResource = Res.string.patient_description
+    val professionalDescription: StringResource = Res.string.professional_description
+    val reportDescription: StringResource = Res.string.report_description
+    val invoiceDescription: StringResource = Res.string.invoice_description
 
     val specialtyMusculoskeletal: StringResource = Res.string.specialty_musculoskeletal
     val specialtySports: StringResource = Res.string.specialty_sports
@@ -157,6 +168,8 @@ object TokensResources {
     val errorInvalidPhone: StringResource = Res.string.error_invalid_phone
     val errorInvalidDni: StringResource = Res.string.error_invalid_dni
     val errorInvalidDniLetter: StringResource = Res.string.error_invalid_dni_letter
+    val errorInvalidPassword: StringResource = Res.string.error_invalid_password
+    val errorPasswordsNotMatch: StringResource = Res.string.error_passwords_not_match
 
     // PDF Labels
     val pdfDateLabel: StringResource = Res.string.pdf_date_label
@@ -193,4 +206,9 @@ object TokensResources {
     val idCreateInvoice: StringResource = Res.string.id_create_invoice
     val idSearchInvoice: StringResource = Res.string.id_search_invoice
     val idEditInvoice: StringResource = Res.string.id_edit_invoice
+
+    val databaseImportedSuccess: StringResource = Res.string.database_imported_success
+    val databaseImportError: StringResource = Res.string.database_import_error
+    val databaseExportedSuccess: StringResource = Res.string.database_exported_success
+    val databaseExportError: StringResource = Res.string.database_export_error
 }

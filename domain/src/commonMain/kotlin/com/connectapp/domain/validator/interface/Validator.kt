@@ -14,5 +14,7 @@ interface Validator {
 
     fun validateDni(dni: String): ValidationError?
 
+    fun validatePassword(password: String): ValidationError?
+
     fun isValidDni(dni: String): Boolean
 }

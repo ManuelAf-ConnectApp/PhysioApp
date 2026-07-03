@@ -55,7 +55,7 @@ fun CustomTopBar(
                         onDismissRequest = { expanded = false }
                     ) {
                         DropdownMenuItem(
-                            text = { Text("Acerca de") },
+                            text = { Text(stringResource(TokensResources.about)) },
                             onClick = {
                                 expanded = false
                                 showAboutDialog = true

@@ -19,11 +19,17 @@ class PatientViewModel(
     private val formValidator: FormValidator
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(PatientState())
+    private val _state = MutableStateFlow(PatientState.EMPTY)
     val state: StateFlow<PatientState> = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<PatientEffect>()
     val effect: SharedFlow<PatientEffect> = _effect.asSharedFlow()
+
+    init {
+        _state.update {
+            PatientState.EMPTY
+        }
+    }
 
     fun onIntent(intent: PatientIntent) {
         when (intent) {
@@ -139,7 +145,7 @@ class PatientViewModel(
                     lastName = _state.value.surname,
                     email = _state.value.email,
                     phone = _state.value.phone,
-                    dni = _state.value.dni,
+                    dni = _state.value.dni.uppercase(),
                     birthDate = _state.value.birthDate,
                     additionalInfo = _state.value.notes
                 )

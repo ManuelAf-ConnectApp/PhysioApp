@@ -1,62 +1,67 @@
 # PhysioApp
 
-PhysioApp es una aplicación multiplataforma (Android e iOS) diseñada para la gestión integral de clínicas de fisioterapia. Desarrollada con **Kotlin Multiplatform (KMP)** y **Compose Multiplatform**, permite a los profesionales gestionar pacientes, facturas e informes de manera eficiente.
+PhysioApp es una solución multiplataforma avanzada (Android e iOS) diseñada para la gestión integral de clínicas de fisioterapia. Desarrollada con **Kotlin Multiplatform (KMP)** y **Compose Multiplatform**, ofrece una experiencia fluida y coherente para que los profesionales de la salud gestionen sus pacientes, facturación e informes clínicos.
 
-## Características
+## Características Principales
 
--   **Gestión de Pacientes:** Registro completo, edición y consulta de historial clínico y notas.
--   **Gestión de Facturación:** Creación y seguimiento de facturas asociadas a pacientes.
--   **Generación de Informes:** Creación de informes clínicos y exportación a formato **PDF** (usando KitePDF).
--   **Autenticación:** Sistema seguro de login, registro y recuperación de contraseña (con almacenamiento seguro mediante KVault).
--   **Búsqueda Avanzada:** Filtros dinámicos para localizar rápidamente pacientes, facturas o informes.
--   **Perfil Profesional:** Gestión de la información del especialista y configuración de la clínica.
--   **Arquitectura Limpia:** Implementación rigurosa de Clean Architecture para asegurar escalabilidad y testabilidad.
--   **Navegación:** Implementación moderna utilizando **Navigation 3**.
--   **Diseño Unificado:** Sistema de diseño propio compartido entre plataformas para una experiencia de usuario coherente.
+-   **Gestión Integral de Pacientes:** Registro detallado, edición y búsqueda avanzada (por DNI o nombre). Seguimiento exhaustivo del historial clínico y notas evolutivas.
+-   **Sistema de Facturación:** Creación y gestión de facturas asociadas a pacientes. Permite búsquedas dinámicas por número de factura, profesional o paciente, y exportación inmediata a **PDF**.
+-   **Generación de Informes Clínicos:** Creación de informes detallados incluyendo diagnóstico, contenido clínico y tratamiento. Exportación profesional a formato **PDF** lista para entregar al paciente.
+-   **Gestión de Profesionales:** Portal de administración para especialistas con soporte para múltiples especialidades fisioterapéuticas (deportiva, neurológica, respiratoria, suelo pélvico, etc.).
+-   **Seguridad de Datos:** Sistema completo de autenticación (Login, Registro, Recuperación de contraseña) con almacenamiento seguro de credenciales mediante **KVault**.
+-   **Mantenimiento y Respaldo:** Funcionalidades de importación y exportación de la base de datos local (**SQLite**) para facilitar copias de seguridad y migración de datos.
+-   **Diseño Adaptativo:** Interfaz de usuario moderna basada en **Material 3** que se adapta a diferentes tamaños de pantalla y dispositivos.
 
-## Estructura del Proyecto
+## Arquitectura y Estructura
 
-El proyecto está organizado en módulos siguiendo los principios de separación de responsabilidades:
+El proyecto sigue los principios de **Arquitectura Limpia (Clean Architecture)** y el patrón **MVI/MVVM+** en la capa de presentación, asegurando escalabilidad, mantenibilidad y testabilidad.
 
-*   `:composeApp`: Punto de entrada de la aplicación. Contiene la configuración de plataforma y la navegación principal.
-*   `:presentation`: Capa de UI compartida. Incluye ViewModels (usando Koin), Screens, States e Intents (MVI/MVVM+).
-*   `:domain`: Núcleo de la lógica de negocio. Contiene Modelos, Use Cases y definiciones de Repositorios.
-*   `:data`: Implementación de la persistencia de datos, repositorios y comunicación con servicios externos.
-*   `:designResources`: Módulo dedicado a la consistencia visual. Contiene tokens de diseño, dimensiones, colores y recursos compartidos.
-*   `/iosApp`: Proyecto nativo de iOS que actúa como contenedor para la UI compartida en dispositivos Apple.
+### Módulos del Proyecto
 
-## Tecnologías Utilizadas
+*   `:composeApp`: Punto de entrada y configuración específica por plataforma.
+*   `:presentation`: Capa de UI compartida que contiene ViewModels, Screens, States e Intents.
+*   `:domain`: Núcleo de la lógica de negocio, modelos y casos de uso.
+*   `:data`: Implementación de repositorios, persistencia local y servicios.
+*   `:designResources`: Módulo centralizado para tokens de diseño, dimensiones, colores y recursos multilingües.
+*   `/iosApp`: Contenedor nativo Swift para la ejecución en el ecosistema Apple.
 
--   **Kotlin Multiplatform (KMP)**
--   **Compose Multiplatform** (Android / iOS)
--   **Koin:** Inyección de dependencias.
--   **Navigation 3:** Sistema de navegación reactivo.
--   **SQLDelight:** Persistencia de datos local.
--   **DataStore:** Almacenamiento de preferencias.
--   **KVault:** Almacenamiento seguro de credenciales.
--   **KitePDF:** Generación de documentos PDF.
--   **Kotlinx Coroutines & Flow:** Gestión de asincronía y reactividad.
--   **Jetpack Lifecycle:** Gestión del ciclo de vida en código compartido.
+## Tecnologías de Vanguardia
 
-## Requisitos y Configuración
+-   **Kotlin Multiplatform (KMP) 2.4.0**
+-   **Compose Multiplatform 1.11.1**
+-   **Navigation 3:** Sistema de navegación reactivo de última generación.
+-   **Koin 4.2.2:** Inyección de dependencias ligera y potente.
+-   **SQLDelight 2.3.2:** Persistencia de datos local segura y tipada.
+-   **DataStore 1.2.1:** Gestión de preferencias de usuario.
+-   **KVault 1.12.0:** Almacenamiento seguro para datos sensibles.
+-   **KitePDF 0.0.5:** Generación de documentos PDF multiplataforma.
+-   **Material 3:** Sistema de diseño moderno y accesible.
+-   **Kotlinx Coroutines & Flow:** Gestión asíncrona y reactiva del flujo de datos.
 
--   Android Studio Ladybug o superior.
--   Xcode 16+ (para compilación de iOS).
--   Kotlin 2.4.0+.
+## Requisitos del Entorno
 
-### Ejecución en Android
+-   **Android Studio Ladybug** o superior.
+-   **Xcode 16.0** o superior (para compilación iOS).
+-   **JDK 17+**.
 
+## Instalación y Ejecución
+
+### Android
 ```shell
 ./gradlew :composeApp:assembleDebug
 ```
 
-### Ejecución en iOS
+### iOS
+Abrir el proyecto `/iosApp` en Xcode o utilizar la configuración de ejecución directa desde Android Studio mediante el plugin de KMP.
 
-Abre el directorio `/iosApp` en Xcode o utiliza las configuraciones de ejecución en Android Studio con el plugin de KMP.
+## Autor y Soporte
+
+Desarrollado por **Manuel María Alconchel Fernández**.
+Para reportar incidencias o solicitar soporte, contactar a: [incidencias@connectapp.es](mailto:incidencias@connectapp.es)
 
 ## Licencia
 
-Este proyecto está bajo la licencia **Apache License 2.0**. Consulta el archivo [LICENCE](LICENCE) para más detalles.
+Este proyecto se distribuye bajo la licencia **Apache License 2.0**. Consulte el archivo [LICENSE](LICENSE) para más detalles.
 
 ---
 

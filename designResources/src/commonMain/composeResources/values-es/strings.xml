@@ -101,7 +101,7 @@
     <string name="developed_by">Desarrollado por:</string>
     <string name="author_name">Manuel María Alconchel Fernández</string>
     <string name="contact_incidents">Contacto Incidencias:</string>
-    <string name="support_email">incidencia@connectapp.es</string>
+    <string name="support_email">incidencias@connectapp.es</string>
     <string name="license_label">Licencia:</string>
     <string name="apache_license">Apache License 2.0</string>
 
@@ -135,10 +135,25 @@
     <string name="report_saved_success">Reporte guardado correctamente</string>
 
     <string name="clear_searches">Limpiar búsquedas</string>
+    <string name="clear_action">Limpiar</string>
     <string name="no_results_found">No se encontraron resultados</string>
     <string name="patient_details">Detalles del Paciente</string>
     <string name="professional_details">Detalles del Profesional</string>
     <string name="edit">Editar</string>
+    <string name="search">Buscar</string>
+    <string name="check_all_professionals">Consultar todos los profesionales</string>
+    <string name="select_database_first">Selecciona una base de datos primero</string>
+    <string name="table_label">Tabla: %s</string>
+    <string name="information">Información</string>
+    <string name="user_description">Usuarios con acceso a la aplicación.</string>
+    <string name="patient_description">Información de los pacientes.</string>
+    <string name="professional_description">Especialistas y profesionales de la salud.</string>
+    <string name="report_description">Informes clínicos generados.</string>
+    <string name="invoice_description">Facturas emitidas a pacientes.</string>
+    <string name="database_imported_success">Base de datos importada correctamente</string>
+    <string name="database_import_error">Error al importar la base de datos</string>
+    <string name="database_exported_success">Base de datos exportada correctamente en %s</string>
+    <string name="database_export_error">Error al exportar la base de datos</string>
 
     <string name="specialty_musculoskeletal">Fisioterapia musculoesquelética o traumatológica</string>
     <string name="specialty_sports">Fisioterapia deportiva</string>
@@ -161,6 +176,8 @@
     <string name="error_invalid_phone">Teléfono no válido</string>
     <string name="error_invalid_dni">Formato de DNI/NIE no válido</string>
     <string name="error_invalid_dni_letter">La letra del DNI/NIE no es correcta</string>
+    <string name="error_invalid_password">Contraseña no válida (mín. 6 caracteres)</string>
+    <string name="error_passwords_not_match">Las contraseñas no coinciden</string>
 
     <string name="pdf_date_label">FECHA:</string>
     <string name="pdf_patient_id_label">PACIENTE ID:</string>

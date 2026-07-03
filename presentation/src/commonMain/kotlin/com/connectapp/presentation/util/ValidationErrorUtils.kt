@@ -14,5 +14,7 @@ fun ValidationError.asString(): String {
         ValidationError.INVALID_PHONE -> stringResource(TokensResources.errorInvalidPhone)
         ValidationError.INVALID_DNI -> stringResource(TokensResources.errorInvalidDni)
         ValidationError.INVALID_DNI_LETTER -> stringResource(TokensResources.errorInvalidDniLetter)
+        ValidationError.INVALID_PASSWORD -> stringResource(TokensResources.errorInvalidPassword)
+        ValidationError.PASSWORDS_NOT_MATCH -> stringResource(TokensResources.errorPasswordsNotMatch)
     }
 }

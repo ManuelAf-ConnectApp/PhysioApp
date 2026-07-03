@@ -4,25 +4,48 @@ import com.connectapp.domain.model.Specialty
 import com.connectapp.domain.validator.model.ValidationError
 
 data class ProfessionalState(
-    val name: String = "",
-    val nameError: ValidationError? = null,
-    val surname: String = "",
-    val surnameError: ValidationError? = null,
-    val specialty: String = "",
-    val specialtyError: ValidationError? = null,
-    val specialties: List<Specialty> = emptyList(),
-    val collegiateNumber: String = "",
-    val collegiateNumberError: ValidationError? = null,
-    val email: String = "",
-    val emailError: ValidationError? = null,
-    val phone: String = "",
-    val phoneError: ValidationError? = null,
-    val isLoading: Boolean = false,
-    val isSaved: Boolean = false,
-    val errorMessage: String? = null,
-    val notes: String = "",
-    val notesError: ValidationError? = null
+    val name: String,
+    val nameError: ValidationError?,
+    val surname: String,
+    val surnameError: ValidationError?,
+    val specialty: String,
+    val specialtyError: ValidationError?,
+    val specialties: List<Specialty>,
+    val collegiateNumber: String,
+    val collegiateNumberError: ValidationError?,
+    val email: String,
+    val emailError: ValidationError?,
+    val phone: String,
+    val phoneError: ValidationError?,
+    val isLoading: Boolean,
+    val isSaved: Boolean,
+    val errorMessage: String?,
+    val notes: String,
+    val notesError: ValidationError?
 ) {
+    companion object {
+        val EMPTY = ProfessionalState(
+            name = "",
+            nameError = null,
+            surname = "",
+            surnameError = null,
+            specialty = "",
+            specialtyError = null,
+            specialties = emptyList(),
+            collegiateNumber = "",
+            collegiateNumberError = null,
+            email = "",
+            emailError = null,
+            phone = "",
+            phoneError = null,
+            isLoading = false,
+            isSaved = false,
+            errorMessage = null,
+            notes = "",
+            notesError = null
+
+        )
+    }
     val isFormValid: Boolean
         get() = name.isNotBlank() && surname.isNotBlank() && specialty.isNotBlank() &&
                 collegiateNumber.isNotBlank() && email.isNotBlank() && phone.isNotBlank() &&

@@ -24,6 +24,7 @@ import com.connectapp.domain.model.User
 import com.connectapp.presentation.component.HomeCard
 import com.connectapp.designresources.TokensResources
 import com.connectapp.designresources.DimensResources
+import com.connectapp.presentation.home.component.HomeComponentWidget
 import org.jetbrains.compose.resources.stringResource
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.compose.viewmodel.koinViewModel
@@ -105,6 +106,8 @@ fun HomeScreen(
         }
 
     }
+
+    HomeComponentWidget()
 }
 
 

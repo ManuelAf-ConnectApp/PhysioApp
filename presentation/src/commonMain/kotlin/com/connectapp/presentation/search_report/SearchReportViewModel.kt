@@ -19,7 +19,7 @@ class SearchReportViewModel(
     private val generateReportPdfUseCase: GenerateReportPdfUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(SearchReportState())
+    private val _state = MutableStateFlow(SearchReportState.EMPTY)
     val state get() = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<SearchReportEffect>()
@@ -31,6 +31,11 @@ class SearchReportViewModel(
 
     private var searchJob: Job? = null
 
+    init {
+        _state.update {
+            SearchReportState.EMPTY
+        }
+    }
 
     fun onIntent(intent: SearchReportIntent) {
         reduce(intent)
@@ -39,18 +44,26 @@ class SearchReportViewModel(
     private fun reduce(intent: SearchReportIntent) {
         when (intent) {
             is SearchReportIntent.QueryChanged -> {
-                _state.update { it.copy(query = intent.query) }
-                searchReports(intent.query)
+                onQueryChanged(intent)
             }
 
             is SearchReportIntent.ReportSelected -> {
-                _state.update { it.copy(selectedReport = intent.report) }
+                onReportSelected(intent)
             }
 
             SearchReportIntent.GeneratePDFClicked -> {
                 generatePdf()
             }
         }
+    }
+
+    private fun onQueryChanged(intent: SearchReportIntent.QueryChanged) {
+        _state.update { it.copy(query = intent.query) }
+        searchReports(intent.query)
+    }
+
+    private fun onReportSelected(intent: SearchReportIntent.ReportSelected) {
+        _state.update { it.copy(selectedReport = intent.report) }
     }
 
     private fun searchReports(query: String) {
@@ -78,7 +91,7 @@ class SearchReportViewModel(
         viewModelScope.launch {
             _state.value.selectedReport?.let { report ->
                 generateReportPdfUseCase(report).onSuccess {
-                    if(it){
+                    if (it) {
                         _effect.emit(SearchReportEffect.SuccessGeneratePdf(message = "pdf_save_success"))
                     } else {
                         _effect.emit(SearchReportEffect.ErrorGeneratePdf(message = "pdf_generate_error"))

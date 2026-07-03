@@ -200,7 +200,7 @@ private fun SettingsScreenContent(
                 verticalArrangement = Arrangement.spacedBy(DimensResources.spacing12)
             ) {
                 Text(
-                    text = "Información", // This was hardcoded but I'll leave it or add it if needed. Wait, I see "Personal Info" in strings.
+                    text = stringResource(TokensResources.information),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary

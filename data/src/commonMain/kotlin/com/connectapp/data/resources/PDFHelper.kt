@@ -164,6 +164,14 @@ class PDFHelper(
         val headerTitle = getString(TokensResources.pdfInvoiceHeader)
         val footerText = getString(TokensResources.pdfInvoiceFooter)
 
+
+        val patient = patientRepository.getPatientById(invoice.patientId.toLong())
+        val professional =
+            professionalRepository.getProfessionalById(invoice.professionalId.toLong())
+
+        val patientFullName = "${patient.firstName} ${patient.lastName}"
+        val professionalFullName = "${professional.firstName} ${professional.lastName}"
+
         return PdfBuilder()
             .setInfo(title = "$rawInvoiceTitle ${invoice.invoiceNumber}")
             .page(width = width, height = height) {
@@ -191,7 +199,7 @@ class PDFHelper(
                 )
 
                 setFillGray(COLOR_GRAY_DARK)
-                text(StandardFont.HelveticaBold, 10.0, width / 2, currentY, patientIdLabel)
+                text(StandardFont.HelveticaBold, 10.0, width / 2, currentY, patientFullName)
                 setFillGray(0.0)
                 text(
                     StandardFont.Helvetica,
@@ -230,7 +238,7 @@ class PDFHelper(
                     10.0,
                     width / 2 + OFFSET_X_VALUE_LARGE,
                     currentY,
-                    invoice.professionalId
+                    professionalFullName
                 )
 
                 currentY -= OFFSET_Y_HEADER

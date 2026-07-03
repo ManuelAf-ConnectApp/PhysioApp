@@ -21,7 +21,7 @@ class ProfessionalViewModel(
     private val formValidator: FormValidator
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(ProfessionalState())
+    private val _state = MutableStateFlow(ProfessionalState.EMPTY)
     val state: StateFlow<ProfessionalState> = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<ProfessionalEffect>()
@@ -29,6 +29,10 @@ class ProfessionalViewModel(
 
 
     init {
+        _state.update {
+            ProfessionalState.EMPTY
+        }
+
         viewModelScope.launch {
             val specialties = getSpecialtyListUseCase()
             _state.update { it.copy(specialties = specialties) }
@@ -162,7 +166,7 @@ class ProfessionalViewModel(
         }
     }
 
-    private fun clearForm(){
+    private fun clearForm() {
         _state.update {
             it.copy(
                 name = "",

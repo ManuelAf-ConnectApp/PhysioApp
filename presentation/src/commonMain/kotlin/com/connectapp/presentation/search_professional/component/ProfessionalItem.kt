@@ -9,7 +9,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.connectapp.designresources.DimensResources
+import com.connectapp.designresources.TokensResources
 import com.connectapp.presentation.model.ProfessionalUi
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun ProfessionalItem(
@@ -27,9 +29,18 @@ internal fun ProfessionalItem(
                 text = "${professional.firstName} ${professional.lastName}",
                 style = MaterialTheme.typography.titleMedium
             )
-            Text(text = "Specialty: ${professional.specialty}", style = MaterialTheme.typography.bodySmall)
-            Text(text = "Email: ${professional.email}", style = MaterialTheme.typography.bodySmall)
-            Text(text = "Phone: ${professional.phone}", style = MaterialTheme.typography.bodySmall)
+            Text(
+                text = "${stringResource(TokensResources.specialty)}: ${professional.specialty}",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Text(
+                text = "${stringResource(TokensResources.email)}: ${professional.email}",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Text(
+                text = "${stringResource(TokensResources.phone)}: ${professional.phone}",
+                style = MaterialTheme.typography.bodySmall
+            )
         }
     }
 }

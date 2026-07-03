@@ -31,7 +31,15 @@ class IOSDatabaseTransfer : DatabaseTransfer {
             error = null
         ) ?: return null
 
-        val originalDbPath = appSupportDir.path + "/$databaseName"
+        // Intentar localizar la base de datos en las posibles ubicaciones de SQLDelight
+        var originalDbPath = appSupportDir.path + "/$databaseName"
+        if (!fileManager.fileExistsAtPath(originalDbPath)) {
+            val databasesPath = appSupportDir.path + "/databases/$databaseName"
+            if (fileManager.fileExistsAtPath(databasesPath)) {
+                originalDbPath = databasesPath
+            }
+        }
+
         val exportedFilePath = documentsDir.path + "/$databaseName"
 
         try {
@@ -42,11 +50,9 @@ class IOSDatabaseTransfer : DatabaseTransfer {
                 }
                 fileManager.copyItemAtPath(originalDbPath, exportedFilePath, null)
             } else {
-                // Si no está en AppSupport, quizás esté en Documents (depende de la configuración del Driver)
-                val alternativePath = documentsDir.path + "/$databaseName"
-                if (originalDbPath != alternativePath && fileManager.fileExistsAtPath(alternativePath)) {
-                    // Ya está en documentos, devolvemos esa ruta
-                    return alternativePath
+                // Si no se encuentra en ninguna de las rutas de AppSupport, quizás ya esté en Documents
+                if (fileManager.fileExistsAtPath(exportedFilePath)) {
+                    return exportedFilePath
                 }
                 return null
             }
@@ -86,13 +92,25 @@ class IOSDatabaseTransfer : DatabaseTransfer {
             error = null
         ) ?: return false
 
-        val destDbPath = appSupportDir.path + "/$databaseName"
+        // En SQLDelight 2.x, la base de datos suele estar en Application Support/databases/
+        val databasesDir = appSupportDir.path + "/databases"
+        if (!fileManager.fileExistsAtPath(databasesDir)) {
+            fileManager.createDirectoryAtPath(databasesDir, true, null, null)
+        }
 
+        // Primero probamos en la subcarpeta 'databases', si no, en la raíz de AppSupport
+        val destDbPath = databasesDir + "/$databaseName"
+        
         try {
             if (!fileManager.fileExistsAtPath(sourceFilePath)) return false
 
-            // 1. Eliminar la base de datos actual y sus archivos auxiliares
-            val pathsToDelete = listOf(destDbPath, "$destDbPath-wal", "$destDbPath-shm")
+            // 1. Eliminar la base de datos actual y sus archivos auxiliares en ambas posibles rutas
+            val pathsToDelete = listOf(
+                destDbPath, "$destDbPath-wal", "$destDbPath-shm",
+                appSupportDir.path + "/$databaseName", 
+                appSupportDir.path + "/$databaseName-wal", 
+                appSupportDir.path + "/$databaseName-shm"
+            )
             pathsToDelete.forEach { path ->
                 if (fileManager.fileExistsAtPath(path)) {
                     fileManager.removeItemAtPath(path, null)
