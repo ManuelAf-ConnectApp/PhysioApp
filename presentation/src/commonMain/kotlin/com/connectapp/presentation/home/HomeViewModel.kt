@@ -35,6 +35,10 @@ class HomeViewModel : ViewModel() {
                     it.copy(user = intent.user)
                 }
             }
+
+            HomeIntent.EmailClicked -> {
+                emitEffect(NavigateToEmail)
+            }
         }
     }
 

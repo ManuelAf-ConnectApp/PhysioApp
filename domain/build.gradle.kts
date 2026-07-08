@@ -12,7 +12,8 @@ kotlin {
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
     android{
         namespace = "com.connectapp.domain"
-        compileSdk = 36
+        compileSdk = libs.versions.android.compileSdk.get().toDouble().toInt()
+        compileSdkExtension = (libs.versions.android.compileSdk.get().toDouble() % 1 * 10).toInt()
         minSdk = 26
 
         withHostTestBuilder {

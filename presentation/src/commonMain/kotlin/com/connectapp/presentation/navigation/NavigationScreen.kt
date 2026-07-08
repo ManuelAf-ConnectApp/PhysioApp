@@ -197,7 +197,8 @@ fun NavigationScreen(
                             },
                             onNavigateToSearchReport = {
                                 viewModel.updateNavigationState(NavigationRoute.SearchReportRoute)
-                            }
+                            },
+
                         )
                     }
                 }

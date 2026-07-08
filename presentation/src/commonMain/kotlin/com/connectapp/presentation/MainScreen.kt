@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
@@ -30,6 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.connectapp.presentation.component.CustomBottomBar
@@ -67,7 +69,14 @@ fun MainScreen(
 
         Scaffold(
             modifier = Modifier.weight(1f),
-            snackbarHost = { SnackbarHost(snackBarHostState) },
+            snackbarHost = { SnackbarHost(snackBarHostState) {data ->
+                Snackbar(
+                    snackbarData = data,
+                    containerColor = Color.Green,
+                    contentColor = Color.White,
+                    actionColor = Color.White,
+                )
+            } },
             topBar = {
                 if (currentRoute.showTopBar) {
                     CustomTopBar(

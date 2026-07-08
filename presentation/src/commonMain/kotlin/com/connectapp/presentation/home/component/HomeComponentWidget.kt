@@ -1,12 +1,9 @@
 package com.connectapp.presentation.home.component
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,13 +15,36 @@ import com.connectapp.designresources.DimensResources
 
 
 @Composable
-fun HomeComponentWidget() {
-    Box(
+fun HomeComponentWidget(
+    onEmailClicked: () -> Unit
+) {
+    Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primary),
-        contentAlignment = Alignment.Center
+            .padding(bottom = DimensResources.spacing32),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            text = "Desarrollado por: Manuel María Alconchel Fernández",
+            color = Color.White,
+            fontSize = 14.sp
+        )
+        Text(
+            text = "ConnectApp (ES)",
+            color = Color.White,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Text(
+            modifier = Modifier.clickable {
+                onEmailClicked()
+            },
+            text = "Email: incidencias@connectapp.es",
+            color = Color.White,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold
+        )
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Bottom
@@ -34,25 +54,6 @@ fun HomeComponentWidget() {
                 text = "Physio App",
                 color = Color.White,
                 fontSize = 32.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
-
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = DimensResources.spacing32),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Desarrollado por: Manuel María Alconchel Fernández",
-                color = Color.White,
-                fontSize = 14.sp
-            )
-            Text(
-                text = "ConnectApp (ES)",
-                color = Color.White,
-                fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
             )
         }

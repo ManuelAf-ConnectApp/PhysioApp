@@ -29,7 +29,8 @@ kotlin {
 
     android {
         namespace = "com.connectapp.physioapp"
-        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        compileSdk = libs.versions.android.compileSdk.get().toDouble().toInt()
+        compileSdkExtension = (libs.versions.android.compileSdk.get().toDouble() % 1 * 10).toInt()
 
         defaultConfig {
             applicationId = "com.connectapp.physioapp"
