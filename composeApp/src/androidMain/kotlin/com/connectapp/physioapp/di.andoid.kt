@@ -28,7 +28,7 @@ actual val platformModule: Module = module {
 
     single<SaveFile> { AndroidSaveFile(context = get()) }
 
-    single<DatabaseTransfer> { AndroidDatabaseTransfer(context = get()) }
+    single<DatabaseTransfer> { AndroidDatabaseTransfer(context = get(), cryptoManager = get()) }
 
     factory<NotificationPermissionRepository> { AndroidNotificationPermissionManager(activity = get()) }
 }

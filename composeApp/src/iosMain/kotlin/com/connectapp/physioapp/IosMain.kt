@@ -14,12 +14,8 @@ fun MainViewController(): UIViewController = ComposeUIViewController {
     App(windowSizeClass = windowSizeClass)
 }
 
-fun startKoinIos(iosCryptoManager: CryptoManager) {
+fun startKoinIos() {
     startKoin {
-        modules(
-            appModules() + module {
-                single<CryptoManager> { iosCryptoManager }
-            }
-        )
+        modules(appModules())
     }
 }

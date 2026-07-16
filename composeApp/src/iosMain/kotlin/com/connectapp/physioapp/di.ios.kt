@@ -6,6 +6,8 @@ import com.connectapp.data.database.IosDatabaseDriverFactory
 import com.connectapp.data.file.SaveFile
 import com.connectapp.data.file.IOSSaveFile
 import com.connectapp.data.notification.IOSNotificationPermissionManager
+import com.connectapp.data.storage.CryptoManager
+import com.connectapp.data.storage.IosCryptoManager
 import com.connectapp.domain.database.DatabaseTransfer
 import com.connectapp.domain.repository.NotificationPermissionRepository
 import kotlinx.cinterop.ExperimentalForeignApi
@@ -21,7 +23,7 @@ actual val platformModule: Module = module {
     single<DatabaseDriverFactory> {
         IosDatabaseDriverFactory()
     }
-    // CryptoManager se inyecta desde Swift en initKoinIos
+    single<CryptoManager> { IosCryptoManager() }
 
     single(named("datastore_path")) {
         val documentDirectory = NSFileManager.defaultManager.URLForDirectory(

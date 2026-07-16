@@ -6,11 +6,16 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import com.connectapp.data.storage.CryptoManager
 import com.connectapp.domain.database.DatabaseTransfer
 import java.io.File
+import java.io.FileInputStream
 import java.io.FileOutputStream
 
-class AndroidDatabaseTransfer(val context: Context) : DatabaseTransfer {
+class AndroidDatabaseTransfer(
+    val context: Context,
+    private val cryptoManager: CryptoManager
+) : DatabaseTransfer {
     override fun exportDataBase(databaseName: String): String? {
         try {
             // Buscamos el archivo de la base de datos.

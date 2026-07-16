@@ -109,6 +109,7 @@ kotlin {
                 implementation(libs.androidx.foundation)
                 implementation(libs.core)
                 implementation(libs.sqldelight.android)
+                implementation(libs.sqlcipher)
                 implementation(libs.androidx.security.crypto)
             }
         }

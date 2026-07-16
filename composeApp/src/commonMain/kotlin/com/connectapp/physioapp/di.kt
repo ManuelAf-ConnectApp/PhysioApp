@@ -52,6 +52,7 @@ import com.connectapp.domain.repository.SpecialtyRepository
 import com.connectapp.domain.resources.GeneratePdfResource
 import com.connectapp.presentation.search_report.SearchReportViewModel
 import com.connectapp.presentation.search_professional.SearchProfessionalViewModel
+import kotlinx.coroutines.runBlocking
 import okio.Path.Companion.toPath
 
 expect val platformModule: Module
@@ -111,7 +112,17 @@ val domainModule = module {
 val dataModule = module {
     single<AppDatabase> {
         val factory: DatabaseDriverFactory = get()
-        AppDatabase(factory.createDriver())
+        val secureStorage: SecureStorage = get()
+        val passphrase = try {
+            runBlocking {
+                secureStorage.getSecret("db_passphrase") ?: "secure_physio_app_db_key_2024".also {
+                    secureStorage.saveSecret("db_passphrase", it)
+                }
+            }
+        } catch (e: Exception) {
+            "fallback_secure_key_123"
+        }
+        AppDatabase(factory.createDriver(passphrase))
     }
     singleOf(::UserMapper)
     singleOf(::UserRepositoryImpl) { bind<UserRepository>() }
