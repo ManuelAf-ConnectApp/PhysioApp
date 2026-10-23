@@ -1,0 +1,28 @@
+-- Signed consent to the processing of personal and health data (D13, confirmed 2026-10-20),
+-- kept apart from the patient row inside the same encrypted database. Every signature is kept:
+-- re-signing adds a row, so the evidence of earlier consents is never overwritten.
+-- signer is 'PATIENT' or 'REPRESENTATIVE'; a legal representative must be identified.
+-- consent_version identifies the exact text that was shown when signing.
+CREATE TABLE patient_signature (
+    id TEXT NOT NULL PRIMARY KEY,
+    patient_id TEXT NOT NULL REFERENCES patient(id) ON DELETE CASCADE,
+    image_png BLOB NOT NULL,
+    signer TEXT NOT NULL CHECK (signer IN ('PATIENT', 'REPRESENTATIVE')),
+    representative_name TEXT,
+    representative_document TEXT,
+    consent_version TEXT NOT NULL,
+    captured_at INTEGER NOT NULL,
+    CHECK (signer = 'PATIENT' OR (representative_name IS NOT NULL AND representative_document IS NOT NULL))
+);
+
+CREATE INDEX patient_signature_patient ON patient_signature(patient_id, captured_at);
+
+insertSignature:
+INSERT INTO patient_signature(id, patient_id, image_png, signer, representative_name, representative_document, consent_version, captured_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+selectLatestSignature:
+SELECT * FROM patient_signature WHERE patient_id = ? ORDER BY captured_at DESC, rowid DESC LIMIT 1;
+
+countSignatures:
+SELECT count(*) FROM patient_signature WHERE patient_id = ?;

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:SettingsScreen.kt$@Composable fun SettingsScreen( modifier: Modifier = Modifier, onLogout: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:SettingsScreen.kt$@Composable private fun ProfileHeader( name: String, email: String, onEditClick: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:SettingsScreen.kt$@Composable private fun SectionHeader(title: String)</ID>
+    <ID>FunctionNaming:SettingsScreen.kt$@Composable private fun SettingsGroup(content: @Composable ColumnScope.() -&gt; Unit)</ID>
+    <ID>FunctionNaming:SettingsScreen.kt$@Composable private fun SettingsRow( icon: ImageVector, title: String, subtitle: String? = null, onClick: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:SettingsScreen.kt$@Composable private fun SettingsSwitchRow( icon: ImageVector, title: String, checked: Boolean, onCheckedChange: (Boolean) -&gt; Unit )</ID>
+    <ID>Indentation:SettingsScreen.kt$ </ID>
+    <ID>LongMethod:SettingsScreen.kt$@Composable fun SettingsScreen( modifier: Modifier = Modifier, onLogout: () -&gt; Unit )</ID>
+    <ID>NoWildcardImports:SettingsScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>NoWildcardImports:SettingsScreen.kt$import androidx.compose.material.icons.filled.*</ID>
+    <ID>NoWildcardImports:SettingsScreen.kt$import androidx.compose.material3.*</ID>
+    <ID>NoWildcardImports:SettingsScreen.kt$import com.connectapp.commonresources.*</ID>
+    <ID>WildcardImport:SettingsScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:SettingsScreen.kt$import androidx.compose.material.icons.filled.*</ID>
+    <ID>WildcardImport:SettingsScreen.kt$import androidx.compose.material3.*</ID>
+    <ID>WildcardImport:SettingsScreen.kt$import com.connectapp.commonresources.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

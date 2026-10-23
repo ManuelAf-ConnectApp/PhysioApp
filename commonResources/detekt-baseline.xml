@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FinalNewline:Platform.android.kt$com.connectapp.commonresources.Platform.android.kt</ID>
+    <ID>FinalNewline:Platform.ios.kt$com.connectapp.commonresources.Platform.ios.kt</ID>
+    <ID>FinalNewline:Platform.kt$com.connectapp.commonresources.Platform.kt</ID>
+    <ID>FunctionNaming:Theme.kt$@Composable fun ConnectAppTheme( darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -&gt; Unit, )</ID>
+    <ID>ImportOrdering:TokenResources.kt$import com.connectapp.commonresources.resources.Res import com.connectapp.commonresources.resources.*</ID>
+    <ID>NewLineAtEndOfFile:Platform.android.kt$com.connectapp.commonresources.Platform.android.kt</ID>
+    <ID>NewLineAtEndOfFile:Platform.ios.kt$com.connectapp.commonresources.Platform.ios.kt</ID>
+    <ID>NewLineAtEndOfFile:Platform.kt$com.connectapp.commonresources.Platform.kt</ID>
+    <ID>NoConsecutiveBlankLines:TokenResources.kt$ </ID>
+    <ID>NoWildcardImports:TokenResources.kt$import com.connectapp.commonresources.resources.*</ID>
+    <ID>WildcardImport:TokenResources.kt$import com.connectapp.commonresources.resources.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

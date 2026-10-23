@@ -1,0 +1,104 @@
+-- Clinical report. `code` is the visible, unique, non-editable identifier;
+-- `id` is the stable internal key. References are stable ids, never names.
+-- D17 (2026-10-20): reports are part of the clinical record and are never deleted. Only the author
+-- edits them, and every edit first copies the replaced text to clinical_report_version. The author
+-- may annul a report with a mandatory reason; it stays visible as annulled.
+CREATE TABLE clinical_report (
+    id TEXT NOT NULL PRIMARY KEY,
+    code TEXT NOT NULL UNIQUE,
+    professional_id TEXT NOT NULL REFERENCES professional(id) ON DELETE RESTRICT,
+    patient_id TEXT NOT NULL REFERENCES patient(id) ON DELETE RESTRICT,
+    report_text TEXT NOT NULL,
+    condition_text TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    annulled_at INTEGER,
+    annulment_reason TEXT,
+    CHECK ((annulled_at IS NULL) = (annulment_reason IS NULL))
+);
+
+CREATE INDEX clinical_report_patient ON clinical_report(patient_id);
+CREATE INDEX clinical_report_professional ON clinical_report(professional_id);
+
+-- Earlier versions of a report: the text as it was between saved_at and replaced_at.
+CREATE TABLE clinical_report_version (
+    id TEXT NOT NULL PRIMARY KEY,
+    report_id TEXT NOT NULL REFERENCES clinical_report(id) ON DELETE RESTRICT,
+    report_text TEXT NOT NULL,
+    condition_text TEXT NOT NULL,
+    saved_at INTEGER NOT NULL,
+    replaced_at INTEGER NOT NULL
+);
+
+CREATE INDEX clinical_report_version_report ON clinical_report_version(report_id, replaced_at);
+
+insertReport:
+INSERT INTO clinical_report(id, code, professional_id, patient_id, report_text, condition_text, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+selectReportByCode:
+SELECT * FROM clinical_report WHERE code = ?;
+
+selectReportById:
+SELECT * FROM clinical_report WHERE id = ?;
+
+-- The report with the names it is shown with. Patients and professionals are never deleted while
+-- a report points at them (ON DELETE RESTRICT), so the joins always find them.
+selectReportDetail:
+SELECT r.*,
+       p.first_name AS patient_first_name, p.last_name AS patient_last_name,
+       p.document_type AS patient_document_type, p.document_number AS patient_document_number,
+       pr.first_name AS professional_first_name, pr.last_name AS professional_last_name,
+       (SELECT count(*) FROM clinical_report_version v WHERE v.report_id = r.id) AS version_count
+FROM clinical_report r
+JOIN patient p ON p.id = r.patient_id
+JOIN professional pr ON pr.id = r.professional_id
+WHERE r.id = ?;
+
+updateReportContent:
+UPDATE clinical_report SET report_text = ?, condition_text = ?, updated_at = ? WHERE id = ?;
+
+annulReport:
+UPDATE clinical_report SET annulled_at = ?, annulment_reason = ?, updated_at = ? WHERE id = ?;
+
+insertVersion:
+INSERT INTO clinical_report_version(id, report_id, report_text, condition_text, saved_at, replaced_at)
+VALUES (?, ?, ?, ?, ?, ?);
+
+selectVersions:
+SELECT * FROM clinical_report_version WHERE report_id = ? ORDER BY replaced_at DESC, rowid DESC;
+
+-- Searches: one criterion at a time; '\' escapes LIKE wildcards. Annulled
+-- reports are listed too, marked as such: they are still part of the clinical record.
+searchByCode:
+SELECT r.id, r.code, r.created_at, r.annulled_at,
+       p.first_name AS patient_first_name, p.last_name AS patient_last_name, p.document_number AS patient_document_number,
+       pr.first_name AS professional_first_name, pr.last_name AS professional_last_name
+FROM clinical_report r
+JOIN patient p ON p.id = r.patient_id
+JOIN professional pr ON pr.id = r.professional_id
+WHERE r.code LIKE :pattern ESCAPE '\'
+ORDER BY r.created_at DESC, r.id
+LIMIT :limit;
+
+searchByPatientName:
+SELECT r.id, r.code, r.created_at, r.annulled_at,
+       p.first_name AS patient_first_name, p.last_name AS patient_last_name, p.document_number AS patient_document_number,
+       pr.first_name AS professional_first_name, pr.last_name AS professional_last_name
+FROM clinical_report r
+JOIN patient p ON p.id = r.patient_id
+JOIN professional pr ON pr.id = r.professional_id
+WHERE p.full_name_search LIKE :pattern ESCAPE '\'
+ORDER BY r.created_at DESC, r.id
+LIMIT :limit;
+
+searchByPatientDocument:
+SELECT r.id, r.code, r.created_at, r.annulled_at,
+       p.first_name AS patient_first_name, p.last_name AS patient_last_name, p.document_number AS patient_document_number,
+       pr.first_name AS professional_first_name, pr.last_name AS professional_last_name
+FROM clinical_report r
+JOIN patient p ON p.id = r.patient_id
+JOIN professional pr ON pr.id = r.professional_id
+WHERE p.document_key LIKE :pattern ESCAPE '\'
+ORDER BY r.created_at DESC, r.id
+LIMIT :limit;

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FinalNewline:ProfileInfoItem.kt$com.connectapp.presentation.profile.component.ProfileInfoItem.kt</ID>
+    <ID>FunctionNaming:ProfileInfoItem.kt$@Composable internal fun ProfileInfoItem( icon: androidx.compose.ui.graphics.vector.ImageVector, label: String, value: String )</ID>
+    <ID>FunctionNaming:ProfileScreen.kt$@Composable private fun ProfileScreenContent( state: ProfileState, onLogout: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:ProfileScreen.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun ProfileScreen( modifier: Modifier = Modifier, onNavigateBack: () -&gt; Unit, onNavigateToLogin: () -&gt; Unit )</ID>
+    <ID>LongMethod:ProfileScreen.kt$@Composable private fun ProfileScreenContent( state: ProfileState, onLogout: () -&gt; Unit )</ID>
+    <ID>NewLineAtEndOfFile:ProfileInfoItem.kt$com.connectapp.presentation.profile.component.ProfileInfoItem.kt</ID>
+    <ID>NoBlankLineBeforeRbrace:ProfileScreen.kt$ </ID>
+    <ID>NoWildcardImports:ProfileScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>NoWildcardImports:ProfileScreen.kt$import androidx.compose.material3.*</ID>
+    <ID>NoWildcardImports:ProfileScreen.kt$import androidx.compose.runtime.*</ID>
+    <ID>NoWildcardImports:ProfileScreen.kt$import com.connectapp.commonresources.*</ID>
+    <ID>WildcardImport:ProfileScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:ProfileScreen.kt$import androidx.compose.material3.*</ID>
+    <ID>WildcardImport:ProfileScreen.kt$import androidx.compose.runtime.*</ID>
+    <ID>WildcardImport:ProfileScreen.kt$import com.connectapp.commonresources.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

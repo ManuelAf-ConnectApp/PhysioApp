@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FinalNewline:HomeEffect.kt$com.connectapp.presentation.home.HomeEffect.kt</ID>
+    <ID>FinalNewline:HomeIntent.kt$com.connectapp.presentation.home.HomeIntent.kt</ID>
+    <ID>FunctionNaming:HomeCard.kt$@Composable internal fun HomeCard( item: DashboardItem, onClick: () -&gt; Unit, )</ID>
+    <ID>FunctionNaming:HomeScreen.kt$@Composable fun HomeScreen( modifier: Modifier = Modifier, onShowToast: (message: String, actionLabel: String) -&gt; Unit, )</ID>
+    <ID>FunctionNaming:HomeScreen.kt$@Composable private fun HomeScreenContent( modifier: Modifier = Modifier, state: HomeState, onIntent: (HomeIntent) -&gt; Unit, )</ID>
+    <ID>NewLineAtEndOfFile:HomeEffect.kt$com.connectapp.presentation.home.HomeEffect.kt</ID>
+    <ID>NewLineAtEndOfFile:HomeIntent.kt$com.connectapp.presentation.home.HomeIntent.kt</ID>
+    <ID>NoConsecutiveBlankLines:HomeCard.kt$ </ID>
+    <ID>NoConsecutiveBlankLines:HomeScreen.kt$ </ID>
+    <ID>NoWildcardImports:HomeState.kt$import com.connectapp.commonresources.*</ID>
+    <ID>WildcardImport:HomeState.kt$import com.connectapp.commonresources.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

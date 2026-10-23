@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	 Consumed by `xcodebuild -exportArchive` in the release-ios job
+	 (specs/012-release-pipeline-automation). teamID is a placeholder substituted in CI from
+	 IOS_TEAM_ID. `provisioningProfiles` is deliberately absent here, not templated with a
+	 placeholder key: PRODUCT_BUNDLE_IDENTIFIER in iosApp/Configuration/Config.xcconfig is
+	 itself "com.connectapp.physioapp.PhysioApp$(TEAM_ID)" (TEAM_ID-dependent), so the real
+	 dict key can only be computed once IOS_TEAM_ID is known — the release-ios job inserts it
+	 at runtime via `PlistBuddy -c "Add :provisioningProfiles:<resolved bundle id> string
+	 <profile name>"` rather than a sed placeholder, which can't template a plist *key*.
+	-->
+	<key>method</key>
+	<string>app-store</string>
+	<key>signingStyle</key>
+	<string>manual</string>
+	<key>teamID</key>
+	<string>__IOS_TEAM_ID__</string>
+	<key>uploadSymbols</key>
+	<true/>
+	<key>compileBitcode</key>
+	<false/>
+</dict>
+</plist>

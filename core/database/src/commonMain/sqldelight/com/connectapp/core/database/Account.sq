@@ -1,0 +1,55 @@
+-- Authenticable identity (docs/00-auditoria-y-plan.md §6). Never stores plain-text passwords:
+-- password_hash is the self-describing PBKDF2 string from :core:crypto (D16).
+-- professional_id is nullable + UNIQUE: D3 (confirmed 2026-10-16) makes the 1:1 link mandatory,
+-- but it is set by the onboarding step right after the first login, so it is NULL until then.
+-- failed_attempts/locked_until implement the login lockout; recovery_code_hash is the PBKDF2 hash
+-- of the one-time recovery code (D4).
+CREATE TABLE account (
+    id TEXT NOT NULL PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email_normalized TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    recovery_code_hash TEXT,
+    professional_id TEXT UNIQUE REFERENCES professional(id) ON DELETE RESTRICT,
+    failed_attempts INTEGER NOT NULL DEFAULT 0,
+    locked_until INTEGER,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL
+);
+
+insertAccount:
+INSERT INTO account(id, first_name, last_name, email_normalized, password_hash, recovery_code_hash, professional_id, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+selectAccountByEmail:
+SELECT * FROM account WHERE email_normalized = ?;
+
+countAccounts:
+SELECT count(*) FROM account;
+
+selectAccountById:
+SELECT * FROM account WHERE id = ?;
+
+updateLoginFailures:
+UPDATE account SET failed_attempts = ?, locked_until = ?, updated_at = ? WHERE id = ?;
+
+clearLoginFailures:
+UPDATE account SET failed_attempts = 0, locked_until = NULL, updated_at = ? WHERE id = ?;
+
+updatePasswordHash:
+UPDATE account SET password_hash = ?, updated_at = ? WHERE id = ?;
+
+resetCredentials:
+UPDATE account SET password_hash = ?, recovery_code_hash = ?, failed_attempts = 0, locked_until = NULL, updated_at = ?
+WHERE id = ?;
+
+linkProfessional:
+UPDATE account SET professional_id = ?, updated_at = ? WHERE id = ? AND professional_id IS NULL;
+
+-- Settings (D15): a new password also clears the failed-attempt counter of the check that preceded it.
+changePassword:
+UPDATE account SET password_hash = ?, failed_attempts = 0, locked_until = NULL, updated_at = ? WHERE id = ?;
+
+updateRecoveryCodeHash:
+UPDATE account SET recovery_code_hash = ?, updated_at = ? WHERE id = ?;

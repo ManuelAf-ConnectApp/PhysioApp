@@ -1,0 +1,146 @@
+PhysioApp
+Copyright 2026 Manuel AF
+
+Este producto se distribuye bajo la Apache License, Version 2.0 (ver LICENSE).
+
+Este fichero recoge los avisos de copyright, procedencia y atribución aplicables
+a PhysioApp. No sustituye al fichero LICENSE, que contiene los términos de la
+licencia.
+
+Procedencia del código
+----------------------
+
+PhysioApp se ha creado a partir de la plantilla "CleanArch"
+(https://github.com/ManuelAf-ConnectApp/CleanArch), un proyecto Kotlin
+Multiplatform con Clean Architecture y MVI del mismo autor. La plantilla se
+distribuía bajo la GNU General Public License, versión 3. Su titular único de
+copyright, Manuel AF, publica el código derivado que forma PhysioApp bajo la
+Apache License, Version 2.0 (decisión del 2026-10-16).
+
+Como registro de procedencia se conservan:
+  - docs/procedencia/README-plantilla-CleanArch.md
+  - docs/procedencia/LICENSE-plantilla-CleanArch-GPL-3.0.txt
+
+Material de terceros
+--------------------
+
+Tras auditar el código fuente de este repositorio, no se han encontrado ficheros
+NOTICE de terceros ni cabeceras de licencia de terceros que haya que conservar.
+
+SQLCipher
+~~~~~~~~~
+
+Las versiones compiladas de PhysioApp incluyen SQLCipher Community Edition
+(https://www.zetetic.net/sqlcipher/), versión 4.17.0, para cifrar la base de
+datos local: en Android a través de net.zetetic:sqlcipher-android y en iOS a
+través del paquete Swift SQLCipher.swift. Su licencia exige reproducir el
+siguiente aviso en la documentación de las distribuciones binarias:
+
+    Copyright (c) 2025, ZETETIC LLC
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+        * Redistributions of source code must retain the above copyright
+          notice, this list of conditions and the following disclaimer.
+        * Redistributions in binary form must reproduce the above copyright
+          notice, this list of conditions and the following disclaimer in the
+          documentation and/or other materials provided with the distribution.
+        * Neither the name of the ZETETIC LLC nor the
+          names of its contributors may be used to endorse or promote products
+          derived from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY ZETETIC LLC ''AS IS'' AND ANY
+    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL ZETETIC LLC BE LIABLE FOR ANY
+    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+    ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+SQLCipher se basa en SQLite (https://sqlite.org/), que es de dominio público.
+
+KVault
+~~~~~~
+
+Las versiones compiladas incluyen KVault (https://github.com/Liftric/KVault),
+que guarda la clave de la base de datos y la sesión recordada en el almacén
+seguro del sistema (Android Keystore / iOS Keychain). Se distribuye bajo la
+licencia MIT:
+
+    MIT License
+
+    Copyright (c) 2020 Liftric GmbH
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+Skia (solo iOS)
+~~~~~~~~~~~~~~~
+
+En iOS, Compose Multiplatform dibuja con Skiko (Apache-2.0), que incluye Skia
+(https://skia.org/). Su licencia exige reproducir el siguiente aviso en la
+documentación de las distribuciones binarias:
+
+    Copyright (c) 2011 Google Inc. All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are
+    met:
+
+      * Redistributions of source code must retain the above copyright
+        notice, this list of conditions and the following disclaimer.
+
+      * Redistributions in binary form must reproduce the above copyright
+        notice, this list of conditions and the following disclaimer in
+        the documentation and/or other materials provided with the
+        distribution.
+
+      * Neither the name of the copyright holder nor the names of its
+        contributors may be used to endorse or promote products derived
+        from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+    A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+    OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+    SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+    DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+    THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Resto de dependencias
+~~~~~~~~~~~~~~~~~~~~~
+
+El resto de bibliotecas incluidas en las versiones compiladas (AndroidX, Compose
+Multiplatform, Kotlin y kotlinx, Koin, SQLDelight, Touchlab SQLiter y Stately,
+Skiko, Tink, Gson, Guava listenablefuture, JSpecify) se distribuyen bajo la
+Apache License, Version 2.0, cuyo texto está en LICENSE. Ninguna incluye un
+fichero NOTICE propio. No se incluyen tipografías: la app usa las del sistema.
+El inventario completo, con versiones y método, está en
+docs/licencias-terceros.md (revisado el 2026-10-21).
+
+Estos avisos, con el texto completo de cada licencia, acompañan también a cada
+distribución binaria: la app los muestra en Ajustes > Licencias de código
+abierto.

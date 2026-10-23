@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:SplashScreen.kt$@Composable fun SplashScreen( onNavigateToLogin: () -&gt; Unit, onNavigateToHome: () -&gt; Unit, )</ID>
+    <ID>LongMethod:SplashScreen.kt$@Composable fun SplashScreen( onNavigateToLogin: () -&gt; Unit, onNavigateToHome: () -&gt; Unit, )</ID>
+    <ID>NoWildcardImports:SplashScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:SplashScreen.kt$import androidx.compose.foundation.layout.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

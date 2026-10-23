@@ -1,0 +1,70 @@
+# Configuración única de detekt para todo el proyecto PhysioApp
+# (specs/005-static-analysis-ci). Ningún módulo declara su propio detekt.yml ni reglas
+# inline en su build.gradle.kts, salvo la ruta `baseline`, que es propia de cada módulo.
+#
+# Cobertura: se aplica vía `physioapp.kmp.base.gradle.kts`, que cubre :domain, :presentation,
+# :commonResources, core:*, data:*, y los feature/*; más una aplicación puntual en
+# composeApp/build.gradle.kts y build-logic/build.gradle.kts, los dos únicos puntos de
+# compilación que no heredan esa convención (ver contracts/detekt-config-contract.md).
+#
+# Un módulo Gradle nuevo queda cubierto automáticamente si aplica el plugin
+# `physioapp.kmp.base`. Si no lo aplica (como composeApp/build-logic), debe declarar
+# `id("io.gitlab.arturbosch.detekt")` explícitamente y apuntar su `config.setFrom` a este
+# mismo fichero -- nunca a una copia propia.
+#
+# Cada módulo mantiene `buildUponDefaultConfig = true`: este fichero solo AJUSTA el ruleset
+# por defecto de detekt, nunca lo reemplaza. Cualquier regla desactivada u optada aquí lleva
+# su justificación como comentario junto a ella (FR-005) -- nunca como @Suppress disperso
+# por el código de producción sin motivo trazable.
+
+build:
+  maxIssues: 0
+
+config:
+  validation: true
+  warningsAsErrors: false
+
+# detekt-formatting envuelve las reglas de estilo tipo ktlint dentro de la misma herramienta
+# (research.md §1) -- evita añadir ktlint como plugin independiente para el mismo terreno.
+formatting:
+  active: true
+  autoCorrect: false
+
+style:
+  MagicNumber:
+    # Desactivada: un proyecto de UI con Compose genera muchos literales dp/sp/alpha/peso de
+    # animación; el ruido de esta regla supera su valor real en este tipo de código.
+    active: false
+  WildcardImport:
+    active: true
+  ForbiddenComment:
+    active: false
+
+complexity:
+  LongMethod:
+    active: true
+    threshold: 60
+    # A @Composable function is a declarative UI tree, not imperative logic — its line count
+    # doesn't track real complexity the way it does elsewhere, and every screen in this project
+    # trips this rule by design otherwise (same rationale as FunctionNaming's ignoreAnnotated
+    # below).
+    ignoreAnnotated: ['Composable']
+  LongParameterList:
+    active: true
+    functionThreshold: 7
+    constructorThreshold: 7
+  TooManyFunctions:
+    active: true
+    thresholdInFiles: 20
+    thresholdInClasses: 20
+  CyclomaticComplexMethod:
+    active: true
+    threshold: 15
+
+naming:
+  active: true
+  FunctionNaming:
+    # PascalCase @Composable functions are the mandatory Jetpack Compose/Compose Multiplatform
+    # naming convention (a @Composable is used like a widget, not a regular function) --
+    # without this, every screen/component in the project trips this rule by design.
+    ignoreAnnotated: ['Composable']

@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>EmptyClassBlock:NavKey.kt$NavKey${ }</ID>
+    <ID>FinalNewline:NavKey.kt$com.connectapp.presentation.navigation.NavKey.kt</ID>
+    <ID>FinalNewline:NavigationScreen.kt$com.connectapp.presentation.navigation.NavigationScreen.kt</ID>
+    <ID>FunctionNaming:CustomBottomBar.kt$@Composable fun CustomBottomBar( currentRoute: NavigationRoute, onNavigate: (NavigationRoute) -&gt; Unit )</ID>
+    <ID>FunctionNaming:CustomTopBar.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun CustomTopBar( title: String, showBackButton: Boolean = false, onNavigationClick: () -&gt; Unit = {}, onNotificationClick: () -&gt; Unit = {} )</ID>
+    <ID>FunctionNaming:MainScreen.kt$@Composable fun MainScreen( modifier: Modifier = Modifier, entryProvider: (Any) -&gt; NavEntry&lt;out Any&gt;, )</ID>
+    <ID>FunctionNaming:NavigationScreen.kt$@Composable fun NavigationScreen( modifier: Modifier = Modifier, viewModel: MainViewModel, entryProvider: (Any) -&gt; NavEntry&lt;out Any&gt;, )</ID>
+    <ID>Indentation:MainViewModel.kt$MainViewModel$ </ID>
+    <ID>NewLineAtEndOfFile:NavKey.kt$com.connectapp.presentation.navigation.NavKey.kt</ID>
+    <ID>NewLineAtEndOfFile:NavigationScreen.kt$com.connectapp.presentation.navigation.NavigationScreen.kt</ID>
+    <ID>NoBlankLineBeforeRbrace:NavigationScreen.kt$ </ID>
+    <ID>NoConsecutiveBlankLines:NavigationContract.kt$ </ID>
+    <ID>NoConsecutiveBlankLines:NavigationScreen.kt$ </ID>
+    <ID>NoEmptyClassBody:NavKey.kt$NavKey${ }</ID>
+    <ID>NoTrailingSpaces:CustomBottomBar.kt$ </ID>
+    <ID>NoTrailingSpaces:CustomBottomBar.kt$// Definición de los destinos de la barra inferior. </ID>
+    <ID>NoUnusedImports:MainScreen.kt$com.connectapp.presentation.MainScreen.kt</ID>
+    <ID>NoUnusedImports:NavigationScreen.kt$com.connectapp.presentation.navigation.NavigationScreen.kt</ID>
+    <ID>NoWildcardImports:CustomBottomBar.kt$import androidx.compose.material3.*</ID>
+    <ID>NoWildcardImports:CustomTopBar.kt$import androidx.compose.material3.*</ID>
+    <ID>NoWildcardImports:NavigationRoute.kt$import com.connectapp.commonresources.*</ID>
+    <ID>SpacingAroundColon:MainViewModel.kt$MainViewModel$:</ID>
+    <ID>SpacingAroundCurly:MainViewModel.kt$MainViewModel${</ID>
+    <ID>SpacingAroundKeyword:MainViewModel.kt$MainViewModel$when</ID>
+    <ID>SpacingAroundOperators:MainViewModel.kt$MainViewModel$-&gt;</ID>
+    <ID>WildcardImport:CustomBottomBar.kt$import androidx.compose.material3.*</ID>
+    <ID>WildcardImport:CustomTopBar.kt$import androidx.compose.material3.*</ID>
+    <ID>WildcardImport:NavigationRoute.kt$import com.connectapp.commonresources.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

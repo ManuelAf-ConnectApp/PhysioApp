@@ -1,0 +1,83 @@
+-- Patient record. Same logical-deletion rule as professional (D8).
+-- D9 (2026-10-20): the identity document is required but may be a NIF/NIE, a passport or another
+-- document (e.g. a minor without DNI, with the guardian's). document_type is an
+-- IdentityDocumentType name; document_number keeps what was typed (trimmed); document_key is the
+-- normalized form used for uniqueness and search. email is stored lower-case.
+CREATE TABLE patient (
+    id TEXT NOT NULL PRIMARY KEY,
+    document_type TEXT NOT NULL,
+    document_number TEXT NOT NULL,
+    document_key TEXT NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    full_name_search TEXT NOT NULL,
+    address TEXT,
+    email TEXT,
+    phone TEXT,
+    notes TEXT,
+    archived_at INTEGER,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    UNIQUE (document_type, document_key)
+);
+
+CREATE INDEX patient_full_name_search ON patient(full_name_search);
+CREATE INDEX patient_email ON patient(email);
+CREATE INDEX patient_document_key ON patient(document_key);
+
+insertPatient:
+INSERT INTO patient(id, document_type, document_number, document_key, first_name, last_name, full_name_search, address, email, phone, notes, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updatePatient:
+UPDATE patient
+SET document_type = ?, document_number = ?, document_key = ?, first_name = ?, last_name = ?, full_name_search = ?,
+    address = ?, email = ?, phone = ?, notes = ?, updated_at = ?
+WHERE id = ?;
+
+selectPatientById:
+SELECT * FROM patient WHERE id = ?;
+
+selectPatientIdByDocument:
+SELECT id FROM patient WHERE document_type = ? AND document_key = ?;
+
+-- Searches: one criterion at a time; '\' escapes LIKE wildcards. The document
+-- search covers every document type ("por NIF"). Archived records only with include_archived = 1.
+searchByDocument:
+SELECT * FROM patient
+WHERE document_key LIKE :pattern ESCAPE '\' AND (archived_at IS NULL OR :include_archived = 1)
+ORDER BY full_name_search, id
+LIMIT :limit;
+
+searchByFullName:
+SELECT * FROM patient
+WHERE full_name_search LIKE :pattern ESCAPE '\' AND (archived_at IS NULL OR :include_archived = 1)
+ORDER BY full_name_search, id
+LIMIT :limit;
+
+searchByEmail:
+SELECT * FROM patient
+WHERE email LIKE :pattern ESCAPE '\' AND (archived_at IS NULL OR :include_archived = 1)
+ORDER BY full_name_search, id
+LIMIT :limit;
+
+touchPatient:
+UPDATE patient SET updated_at = ? WHERE id = ?;
+
+setArchivedAt:
+UPDATE patient SET archived_at = ?, updated_at = ? WHERE id = ?;
+
+-- Reports and invoices of a patient make the record undeletable (D8).
+countClinicalRecords:
+SELECT (SELECT count(*) FROM clinical_report WHERE patient_id = :id) +
+       (SELECT count(*) FROM invoice WHERE patient_id = :id);
+
+deletePatientById:
+DELETE FROM patient WHERE id = ?;
+
+-- Patient picker of new reports and receipts: active patients only (D8), by name or document.
+suggestActivePatients:
+SELECT id, first_name, last_name, document_type, document_number FROM patient
+WHERE archived_at IS NULL AND (full_name_search LIKE :name_pattern ESCAPE '\' OR document_key LIKE :document_pattern ESCAPE '\')
+ORDER BY full_name_search, id
+LIMIT :limit;

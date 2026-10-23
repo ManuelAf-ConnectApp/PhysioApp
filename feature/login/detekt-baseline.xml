@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>CommentWrapping:LoginScreen.kt$/* Error handled via state.errorMessage */</ID>
+    <ID>FinalNewline:LoginIntent.kt$com.connectapp.presentation.login.LoginIntent.kt</ID>
+    <ID>FunctionNaming:LoginScreen.kt$@Composable fun LoginScreen( modifier: Modifier = Modifier, onNavigateToRegister: () -&gt; Unit, onNavigateToForgotPassword: () -&gt; Unit, onNavigateToHome: () -&gt; Unit, )</ID>
+    <ID>FunctionNaming:LoginScreen.kt$@Composable private fun LoginContent( modifier: Modifier = Modifier, state: LoginState, onIntent: (LoginIntent) -&gt; Unit, onNavigateToRegister: () -&gt; Unit, onNavigateToForgotPassword: () -&gt; Unit, )</ID>
+    <ID>LongMethod:LoginScreen.kt$@Composable private fun LoginContent( modifier: Modifier = Modifier, state: LoginState, onIntent: (LoginIntent) -&gt; Unit, onNavigateToRegister: () -&gt; Unit, onNavigateToForgotPassword: () -&gt; Unit, )</ID>
+    <ID>MaxLineLength:LoginScreen.kt$visualTransformation = if (state.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()</ID>
+    <ID>MaximumLineLength:LoginScreen.kt$ </ID>
+    <ID>NewLineAtEndOfFile:LoginIntent.kt$com.connectapp.presentation.login.LoginIntent.kt</ID>
+    <ID>NoBlankLineBeforeRbrace:LoginScreen.kt$ </ID>
+    <ID>NoBlankLineBeforeRbrace:LoginViewModel.kt$LoginViewModel$ </ID>
+    <ID>NoEmptyFirstLineInMethodBlock:LoginScreen.kt$ </ID>
+    <ID>NoWildcardImports:LoginScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>NoWildcardImports:LoginScreen.kt$import androidx.compose.material3.*</ID>
+    <ID>NoWildcardImports:LoginScreen.kt$import androidx.compose.runtime.*</ID>
+    <ID>NoWildcardImports:LoginScreen.kt$import com.connectapp.commonresources.*</ID>
+    <ID>SpacingAroundColon:LoginIntent.kt$LoginIntent.TogglePasswordVisibility$:</ID>
+    <ID>WildcardImport:LoginScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:LoginScreen.kt$import androidx.compose.material3.*</ID>
+    <ID>WildcardImport:LoginScreen.kt$import androidx.compose.runtime.*</ID>
+    <ID>WildcardImport:LoginScreen.kt$import com.connectapp.commonresources.*</ID>
+    <ID>Wrapping:LoginScreen.kt${ /* Error handled via state.errorMessage */ }</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <!--
+             Auto-captures the host app's Context for SQLDelight's AndroidSqliteDriver, without
+             requiring the app module to wire a Koin androidContext() call. See
+             com.connectapp.core.database.DatabaseContextInitializer.
+        -->
+        <provider
+            android:name="com.connectapp.core.database.DatabaseContextInitializer"
+            android:authorities="${applicationId}.connectapp.core.database.context-initializer"
+            android:exported="false" />
+    </application>
+
+</manifest>

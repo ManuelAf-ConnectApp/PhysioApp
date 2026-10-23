@@ -1,0 +1,109 @@
+-- Payment receipts. D6 (2026-10-20): an internal "justificante de pago", not a
+-- Spanish fiscal invoice, labelled as such on screen and in the PDF.
+-- - Numbering is sequential and gapless within a yearly series (`2026-000001`): the number is taken
+--   from invoice_series and the row inserted in the same transaction, and rows are never deleted.
+-- - The author voids a receipt with a mandatory reason; it keeps its number and stays listed (D8).
+-- - Issuer (the author) and recipient (the patient) are copied at issue time, so the document reads
+--   the same later even if their records change. professional_id/patient_id keep the stable links.
+-- - Amounts are exact integer cents. vat_treatment records why no VAT is charged (healthcare
+--   exemption, art. 20.Uno.3º LIVA), so a future fiscal invoice can add taxes without rework.
+CREATE TABLE invoice_series (
+    id TEXT NOT NULL PRIMARY KEY,
+    prefix TEXT NOT NULL UNIQUE,
+    next_number INTEGER NOT NULL DEFAULT 1 CHECK (next_number >= 1)
+);
+
+CREATE TABLE invoice (
+    id TEXT NOT NULL PRIMARY KEY,
+    series_id TEXT NOT NULL REFERENCES invoice_series(id) ON DELETE RESTRICT,
+    number INTEGER NOT NULL CHECK (number >= 1),
+    display_number TEXT NOT NULL UNIQUE,
+    professional_id TEXT NOT NULL REFERENCES professional(id) ON DELETE RESTRICT,
+    patient_id TEXT NOT NULL REFERENCES patient(id) ON DELETE RESTRICT,
+    issuer_first_name TEXT NOT NULL,
+    issuer_last_name TEXT NOT NULL,
+    issuer_nif TEXT NOT NULL,
+    issuer_college_id TEXT NOT NULL,
+    issuer_license_number TEXT NOT NULL,
+    recipient_first_name TEXT NOT NULL,
+    recipient_last_name TEXT NOT NULL,
+    recipient_document_type TEXT NOT NULL,
+    recipient_document_number TEXT NOT NULL,
+    concept TEXT NOT NULL,
+    amount_cents INTEGER NOT NULL CHECK (amount_cents > 0),
+    currency TEXT NOT NULL DEFAULT 'EUR',
+    vat_treatment TEXT NOT NULL DEFAULT 'EXEMPT_HEALTHCARE',
+    paid INTEGER NOT NULL DEFAULT 0 CHECK (paid IN (0, 1)),
+    payment_method TEXT CHECK (payment_method IS NULL OR paid = 1),
+    issued_at INTEGER NOT NULL,
+    voided_at INTEGER,
+    void_reason TEXT,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    UNIQUE (series_id, number),
+    CHECK ((voided_at IS NULL) = (void_reason IS NULL))
+);
+
+CREATE INDEX invoice_patient ON invoice(patient_id);
+CREATE INDEX invoice_professional ON invoice(professional_id);
+CREATE INDEX invoice_issued_at ON invoice(issued_at);
+
+-- The series of a year is created the first time it is used.
+insertSeriesIfMissing:
+INSERT OR IGNORE INTO invoice_series(id, prefix) VALUES (?, ?);
+
+selectSeriesNextNumber:
+SELECT next_number FROM invoice_series WHERE id = ?;
+
+incrementSeriesNumber:
+UPDATE invoice_series SET next_number = next_number + 1 WHERE id = ?;
+
+insertInvoice:
+INSERT INTO invoice(
+    id, series_id, number, display_number, professional_id, patient_id,
+    issuer_first_name, issuer_last_name, issuer_nif, issuer_college_id, issuer_license_number,
+    recipient_first_name, recipient_last_name, recipient_document_type, recipient_document_number,
+    concept, amount_cents, currency, paid, payment_method, issued_at, created_at, updated_at
+)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+selectInvoiceById:
+SELECT * FROM invoice WHERE id = ?;
+
+-- Collection status: the only thing the author can change after issuing (D6).
+updatePaid:
+UPDATE invoice SET paid = ?, payment_method = ?, updated_at = ? WHERE id = ?;
+
+voidInvoice:
+UPDATE invoice SET voided_at = ?, void_reason = ?, updated_at = ? WHERE id = ?;
+
+-- Searches: one criterion at a time; '\' escapes LIKE wildcards. Name and
+-- document match the patient's current record; voided receipts are listed too, marked as such.
+searchByNumber:
+SELECT i.id, i.display_number, i.issued_at, i.amount_cents, i.currency, i.paid, i.voided_at,
+       i.recipient_first_name, i.recipient_last_name, i.recipient_document_number,
+       i.issuer_first_name, i.issuer_last_name
+FROM invoice i
+WHERE i.display_number LIKE :pattern ESCAPE '\'
+ORDER BY i.issued_at DESC, i.number DESC
+LIMIT :limit;
+
+searchByPatientName:
+SELECT i.id, i.display_number, i.issued_at, i.amount_cents, i.currency, i.paid, i.voided_at,
+       i.recipient_first_name, i.recipient_last_name, i.recipient_document_number,
+       i.issuer_first_name, i.issuer_last_name
+FROM invoice i
+JOIN patient p ON p.id = i.patient_id
+WHERE p.full_name_search LIKE :pattern ESCAPE '\'
+ORDER BY i.issued_at DESC, i.number DESC
+LIMIT :limit;
+
+searchByPatientDocument:
+SELECT i.id, i.display_number, i.issued_at, i.amount_cents, i.currency, i.paid, i.voided_at,
+       i.recipient_first_name, i.recipient_last_name, i.recipient_document_number,
+       i.issuer_first_name, i.issuer_last_name
+FROM invoice i
+JOIN patient p ON p.id = i.patient_id
+WHERE p.document_key LIKE :pattern ESCAPE '\'
+ORDER BY i.issued_at DESC, i.number DESC
+LIMIT :limit;

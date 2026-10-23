@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:ForgotPasswordScreen.kt$@Composable fun ForgotPasswordScreen( modifier: Modifier = Modifier, onNavigateBack: () -&gt; Unit )</ID>
+    <ID>LongMethod:ForgotPasswordScreen.kt$@Composable fun ForgotPasswordScreen( modifier: Modifier = Modifier, onNavigateBack: () -&gt; Unit )</ID>
+    <ID>NoWildcardImports:ForgotPasswordScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>NoWildcardImports:ForgotPasswordScreen.kt$import androidx.compose.material3.*</ID>
+    <ID>NoWildcardImports:ForgotPasswordScreen.kt$import com.connectapp.commonresources.*</ID>
+    <ID>PackageName:ForgotPasswordEffect.kt$package com.connectapp.presentation.forgot_password</ID>
+    <ID>PackageName:ForgotPasswordIntent.kt$package com.connectapp.presentation.forgot_password</ID>
+    <ID>PackageName:ForgotPasswordModule.kt$package com.connectapp.presentation.forgot_password.di</ID>
+    <ID>PackageName:ForgotPasswordScreen.kt$package com.connectapp.presentation.forgot_password</ID>
+    <ID>PackageName:ForgotPasswordState.kt$package com.connectapp.presentation.forgot_password</ID>
+    <ID>PackageName:ForgotPasswordViewModel.kt$package com.connectapp.presentation.forgot_password</ID>
+    <ID>PackageNaming:ForgotPasswordEffect.kt$package com.connectapp.presentation.forgot_password</ID>
+    <ID>PackageNaming:ForgotPasswordIntent.kt$package com.connectapp.presentation.forgot_password</ID>
+    <ID>PackageNaming:ForgotPasswordModule.kt$package com.connectapp.presentation.forgot_password.di</ID>
+    <ID>PackageNaming:ForgotPasswordScreen.kt$package com.connectapp.presentation.forgot_password</ID>
+    <ID>PackageNaming:ForgotPasswordState.kt$package com.connectapp.presentation.forgot_password</ID>
+    <ID>PackageNaming:ForgotPasswordViewModel.kt$package com.connectapp.presentation.forgot_password</ID>
+    <ID>WildcardImport:ForgotPasswordScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:ForgotPasswordScreen.kt$import androidx.compose.material3.*</ID>
+    <ID>WildcardImport:ForgotPasswordScreen.kt$import com.connectapp.commonresources.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

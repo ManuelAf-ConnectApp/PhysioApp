@@ -1,0 +1,82 @@
+-- Clinical professional record, distinct from the login account.
+-- Deletion is logical (archived_at, D8): rows referenced by reports/invoices/accounts can never be
+-- physically deleted (ON DELETE RESTRICT on every referencing FK).
+-- *_search columns hold the accent-free, lower-case form computed in Kotlin for name searches.
+-- D9 (2026-10-20): the licence number is only unique within its college.
+-- license_number keeps what the user typed (trimmed); license_number_key is the normalized form
+-- used for uniqueness and search. college_id is a ProfessionalCollege name.
+CREATE TABLE professional (
+    id TEXT NOT NULL PRIMARY KEY,
+    nif TEXT NOT NULL UNIQUE,
+    college_id TEXT NOT NULL,
+    license_number TEXT NOT NULL,
+    license_number_key TEXT NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    full_name_search TEXT NOT NULL,
+    address TEXT,
+    email TEXT,
+    phone TEXT,
+    notes TEXT,
+    archived_at INTEGER,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    UNIQUE (college_id, license_number_key)
+);
+
+CREATE INDEX professional_full_name_search ON professional(full_name_search);
+CREATE INDEX professional_license_number_key ON professional(license_number_key);
+
+insertProfessional:
+INSERT INTO professional(id, nif, college_id, license_number, license_number_key, first_name, last_name, full_name_search, address, email, phone, notes, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateProfessional:
+UPDATE professional
+SET nif = ?, college_id = ?, license_number = ?, license_number_key = ?, first_name = ?, last_name = ?,
+    full_name_search = ?, address = ?, email = ?, phone = ?, notes = ?, updated_at = ?
+WHERE id = ?;
+
+selectProfessionalById:
+SELECT * FROM professional WHERE id = ?;
+
+selectProfessionalByNif:
+SELECT * FROM professional WHERE nif = ?;
+
+selectProfessionalIdByLicense:
+SELECT id FROM professional WHERE college_id = ? AND license_number_key = ?;
+
+-- Searches: one criterion at a time. The pattern arguments are built in Kotlin
+-- with '\' escaping LIKE wildcards. Archived records only appear when include_archived = 1 (D8).
+searchByNif:
+SELECT * FROM professional
+WHERE nif LIKE :pattern ESCAPE '\' AND (archived_at IS NULL OR :include_archived = 1)
+ORDER BY full_name_search, id
+LIMIT :limit;
+
+searchByFullName:
+SELECT * FROM professional
+WHERE full_name_search LIKE :pattern ESCAPE '\' AND (archived_at IS NULL OR :include_archived = 1)
+ORDER BY full_name_search, id
+LIMIT :limit;
+
+searchByLicense:
+SELECT * FROM professional
+WHERE license_number_key LIKE :pattern ESCAPE '\' AND (archived_at IS NULL OR :include_archived = 1)
+ORDER BY full_name_search, id
+LIMIT :limit;
+
+setArchivedAt:
+UPDATE professional SET archived_at = ?, updated_at = ? WHERE id = ?;
+
+-- Accounts, clinical reports and invoices that point at a professional: any of them makes the
+-- record undeletable (D8) and an account also keeps it from being archived.
+countLinkedAccounts:
+SELECT count(*) FROM account WHERE professional_id = ?;
+
+countClinicalRecords:
+SELECT (SELECT count(*) FROM clinical_report WHERE professional_id = :id) +
+       (SELECT count(*) FROM invoice WHERE professional_id = :id);
+
+deleteProfessionalById:
+DELETE FROM professional WHERE id = ?;

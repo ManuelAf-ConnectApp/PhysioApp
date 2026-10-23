@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FinalNewline:AuthRepositoryImpl.kt$com.connectapp.data.repository.AuthRepositoryImpl.kt</ID>
+    <ID>NewLineAtEndOfFile:AuthRepositoryImpl.kt$com.connectapp.data.repository.AuthRepositoryImpl.kt</ID>
+    <ID>NoBlankLineBeforeRbrace:AuthRepositoryImpl.kt$AuthRepositoryImpl$ </ID>
+    <ID>NoConsecutiveBlankLines:UserMapper.kt$ </ID>
+    <ID>TooGenericExceptionCaught:AuthInterceptor.kt$AuthInterceptor$e: Exception</ID>
+  </CurrentIssues>
+</SmellBaseline>

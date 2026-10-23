@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>Filename:di.kt$com.connectapp.physioapp.di.kt</ID>
+    <ID>FinalNewline:App.kt$com.connectapp.physioapp.App.kt</ID>
+    <ID>FinalNewline:MainActivity.kt$com.connectapp.physioapp.MainActivity.kt</ID>
+    <ID>FinalNewline:MainViewController.kt$com.connectapp.physioapp.MainViewController.kt</ID>
+    <ID>FunctionNaming:App.kt$@Composable fun App()</ID>
+    <ID>FunctionNaming:App.kt$@Preview @Composable fun AppPreview()</ID>
+    <ID>FunctionNaming:MainActivity.kt$@Preview @Composable fun AppAndroidPreview()</ID>
+    <ID>FunctionNaming:MainViewController.kt$fun MainViewController()</ID>
+    <ID>ImportOrdering:AppEntryProvider.kt$import androidx.compose.ui.Modifier import androidx.navigation3.runtime.NavEntry import com.connectapp.presentation.MainViewModel import com.connectapp.presentation.navigation.NavigationRoute import com.connectapp.presentation.forgot_password.ForgotPasswordScreen import com.connectapp.presentation.home.HomeScreen import com.connectapp.presentation.login.LoginScreen import com.connectapp.presentation.orders.OrdersScreen import com.connectapp.presentation.profile.ProfileScreen import com.connectapp.presentation.register.RegisterScreen import com.connectapp.presentation.settings.SettingsScreen import com.connectapp.presentation.splash.SplashScreen</ID>
+    <ID>LongMethod:AppEntryProvider.kt$fun appEntryProvider( modifier: Modifier, viewModel: MainViewModel, ): (Any) -&gt; NavEntry&lt;out Any&gt;</ID>
+    <ID>NewLineAtEndOfFile:App.kt$com.connectapp.physioapp.App.kt</ID>
+    <ID>NewLineAtEndOfFile:MainActivity.kt$com.connectapp.physioapp.MainActivity.kt</ID>
+    <ID>NewLineAtEndOfFile:MainViewController.kt$com.connectapp.physioapp.MainViewController.kt</ID>
+    <ID>NoBlankLineBeforeRbrace:AppEntryProvider.kt$ </ID>
+    <ID>NoEmptyFirstLineInMethodBlock:AppEntryProvider.kt$ </ID>
+    <ID>NoUnusedImports:App.kt$com.connectapp.physioapp.App.kt</ID>
+    <ID>NoWildcardImports:App.kt$import androidx.compose.runtime.*</ID>
+    <ID>NoWildcardImports:di.kt$import com.connectapp.data.datasource.*</ID>
+    <ID>WildcardImport:App.kt$import androidx.compose.runtime.*</ID>
+    <ID>WildcardImport:di.kt$import com.connectapp.data.datasource.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

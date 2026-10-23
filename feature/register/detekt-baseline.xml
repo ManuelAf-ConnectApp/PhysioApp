@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>ArgumentListWrapping:RegisterViewModel.kt$RegisterViewModel$(confirmPassword = intent.confirmPassword)</ID>
+    <ID>FunctionNaming:RegisterScreen.kt$@Composable fun RegisterScreen( modifier: Modifier = Modifier, onNavigateBack: () -&gt; Unit, onNavigateToHome: () -&gt; Unit )</ID>
+    <ID>LongMethod:RegisterScreen.kt$@Composable fun RegisterScreen( modifier: Modifier = Modifier, onNavigateBack: () -&gt; Unit, onNavigateToHome: () -&gt; Unit )</ID>
+    <ID>MaxLineLength:RegisterViewModel.kt$RegisterViewModel$is RegisterIntent.ConfirmPasswordChanged -&gt; updateState { it.copy(confirmPassword = intent.confirmPassword) }</ID>
+    <ID>MaximumLineLength:RegisterViewModel.kt$RegisterViewModel$ </ID>
+    <ID>NoWildcardImports:RegisterScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>NoWildcardImports:RegisterScreen.kt$import androidx.compose.material3.*</ID>
+    <ID>NoWildcardImports:RegisterScreen.kt$import com.connectapp.commonresources.*</ID>
+    <ID>WildcardImport:RegisterScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:RegisterScreen.kt$import androidx.compose.material3.*</ID>
+    <ID>WildcardImport:RegisterScreen.kt$import com.connectapp.commonresources.*</ID>
+  </CurrentIssues>
+</SmellBaseline>
