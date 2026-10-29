@@ -41,7 +41,7 @@ import com.connectapp.commonresources.button_mark_paid
 import com.connectapp.commonresources.button_mark_unpaid
 import com.connectapp.commonresources.component.EmptyState
 import com.connectapp.commonresources.component.ErrorMessage
-import com.connectapp.commonresources.component.LoadingIndicator
+import com.connectapp.commonresources.component.LoadingContentPlaceholder
 import com.connectapp.commonresources.component.RecordField
 import com.connectapp.commonresources.component.SelectField
 import com.connectapp.commonresources.export.DocumentExportDialog
@@ -91,7 +91,7 @@ fun InvoiceDetail(
 
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         when {
-            state.isLoading -> LoadingIndicator(modifier = Modifier.align(Alignment.Center))
+            state.isLoading -> LoadingContentPlaceholder()
             invoice == null ->
                 EmptyState(Icons.AutoMirrored.Outlined.ReceiptLong, stringResource(invoice_not_found), "")
             else -> DetailContent(invoice, state, onIntent)

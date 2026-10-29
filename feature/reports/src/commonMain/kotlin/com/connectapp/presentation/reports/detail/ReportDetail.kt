@@ -42,7 +42,7 @@ import com.connectapp.commonresources.button_hide_versions
 import com.connectapp.commonresources.button_show_versions
 import com.connectapp.commonresources.component.EmptyState
 import com.connectapp.commonresources.component.ErrorMessage
-import com.connectapp.commonresources.component.LoadingIndicator
+import com.connectapp.commonresources.component.LoadingContentPlaceholder
 import com.connectapp.commonresources.component.RecordField
 import com.connectapp.commonresources.export.DocumentExportDialog
 import com.connectapp.commonresources.format.formatDateTime
@@ -80,7 +80,7 @@ fun ReportDetail(
 
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         when {
-            state.isLoading -> LoadingIndicator(modifier = Modifier.align(Alignment.Center))
+            state.isLoading -> LoadingContentPlaceholder()
             report == null -> EmptyState(Icons.Outlined.Description, stringResource(report_not_found), "")
             else -> DetailContent(report, state, viewModel::onIntent, onEdit = { onEdit(report.id) })
         }

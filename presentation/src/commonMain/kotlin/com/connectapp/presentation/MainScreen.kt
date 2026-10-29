@@ -156,7 +156,7 @@ fun MainScreen(
             ) { paddingValues ->
                 NavigationScreen(
                     modifier = modifier.padding(paddingValues = paddingValues),
-                    viewModel = viewModel,
+                    navState = navState,
                     onBack = { leave(viewModel::onBack) },
                     entryProvider = entryProvider
                 )

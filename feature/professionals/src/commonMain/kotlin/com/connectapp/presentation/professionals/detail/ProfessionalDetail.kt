@@ -39,7 +39,7 @@ import com.connectapp.commonresources.button_unarchive
 import com.connectapp.commonresources.component.ConfirmationDialog
 import com.connectapp.commonresources.component.EmptyState
 import com.connectapp.commonresources.component.ErrorMessage
-import com.connectapp.commonresources.component.LoadingIndicator
+import com.connectapp.commonresources.component.LoadingContentPlaceholder
 import com.connectapp.commonresources.component.RecordField
 import com.connectapp.commonresources.delete_professional_message
 import com.connectapp.commonresources.delete_professional_title
@@ -85,7 +85,7 @@ fun ProfessionalDetail(
     val professional = state.professional
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         when {
-            state.isLoading -> LoadingIndicator(modifier = Modifier.align(Alignment.Center))
+            state.isLoading -> LoadingContentPlaceholder()
             professional == null -> EmptyState(
                 icon = Icons.Outlined.PersonOff,
                 title = stringResource(professional_not_found),
