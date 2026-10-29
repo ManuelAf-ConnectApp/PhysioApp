@@ -121,7 +121,7 @@
 			mainGroup = 96AFC226E7E59D89134CC936;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				5A1C0FE31A2B4C3D9E8F7063 /* XCRemoteSwiftPackageReference "SQLCipher.swift" */,
+				5A1C0FE31A2B4C3D9E8F7063 /* XCRemoteSwiftPackageReference "SQLCipher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 829651D918FC8F21697BD137 /* Products */;
@@ -251,13 +251,16 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = VC7GG75UH9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PhysioApp;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -277,13 +280,16 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = VC7GG75UH9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PhysioApp;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,7 +385,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5A1C0FE31A2B4C3D9E8F7063 /* XCRemoteSwiftPackageReference "SQLCipher.swift" */ = {
+		5A1C0FE31A2B4C3D9E8F7063 /* XCRemoteSwiftPackageReference "SQLCipher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sqlcipher/SQLCipher.swift";
 			requirement = {
@@ -392,7 +398,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		5A1C0FE31A2B4C3D9E8F7062 /* SQLCipher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5A1C0FE31A2B4C3D9E8F7063 /* XCRemoteSwiftPackageReference "SQLCipher.swift" */;
+			package = 5A1C0FE31A2B4C3D9E8F7063 /* XCRemoteSwiftPackageReference "SQLCipher" */;
 			productName = SQLCipher;
 		};
 /* End XCSwiftPackageProductDependency section */
