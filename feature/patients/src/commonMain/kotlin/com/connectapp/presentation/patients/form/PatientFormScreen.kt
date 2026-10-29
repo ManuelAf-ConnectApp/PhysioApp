@@ -29,6 +29,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.connectapp.commonresources.button_save
 import com.connectapp.commonresources.component.ErrorMessage
 import com.connectapp.commonresources.component.LoadingIndicator
+import com.connectapp.commonresources.component.LoadingContentPlaceholder
 import com.connectapp.commonresources.component.SelectField
 import com.connectapp.commonresources.component.ValidatedTextField
 import com.connectapp.commonresources.document_other_hint
@@ -78,7 +79,7 @@ fun PatientFormScreen(
 
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         if (state.isLoading) {
-            LoadingIndicator(modifier = Modifier.align(Alignment.Center))
+            LoadingContentPlaceholder()
             return@Box
         }
         Column(

@@ -1,9 +1,10 @@
 package com.connectapp.presentation.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
@@ -14,13 +15,11 @@ import com.connectapp.presentation.MainViewModel
 @Composable
 fun NavigationScreen(
     modifier: Modifier = Modifier,
-    viewModel: MainViewModel,
+    navState: NavigationState,
     /** System back; the shell may ask before leaving a screen with unsaved changes. */
     onBack: () -> Unit,
     entryProvider: (Any) -> NavEntry<out Any>,
 ) {
-    val navState by viewModel.navState.collectAsStateWithLifecycle()
-
     @Suppress("UNCHECKED_CAST")
     val typedEntryProvider = entryProvider as (Any) -> NavEntry<Any>
 
@@ -34,6 +33,14 @@ fun NavigationScreen(
             rememberSaveableStateHolderNavEntryDecorator(),
             rememberViewModelStoreNavEntryDecorator(),
         ),
-        entryProvider = typedEntryProvider
+        // A clinical workflow benefits from an immediate, unambiguous change of context. The
+        // default NavDisplay transition composes outgoing and incoming screens together, which
+        // made forms and records briefly appear on top of one another on both platforms.
+        transitionSpec = { EnterTransition.None togetherWith ExitTransition.None },
+        popTransitionSpec = { EnterTransition.None togetherWith ExitTransition.None },
+        predictivePopTransitionSpec = { _ ->
+            EnterTransition.None togetherWith ExitTransition.None
+        },
+        entryProvider = typedEntryProvider,
     )
 }

@@ -36,7 +36,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import com.connectapp.commonresources.component.LoadingIndicator
+import com.connectapp.commonresources.component.LoadingContentPlaceholder
 import com.connectapp.commonresources.licenses_intro
 import com.connectapp.commonresources.licenses_ipad_only
 import com.connectapp.commonresources.licenses_load_error
@@ -160,7 +160,7 @@ private fun LicenseText(textFile: String) {
     val loaded = text
     Box(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
         when {
-            loaded == null -> LoadingIndicator(modifier = Modifier.align(Alignment.Center))
+            loaded == null -> LoadingContentPlaceholder()
             loaded.isEmpty() -> Text(stringResource(licenses_load_error), color = MaterialTheme.colorScheme.error)
             else -> SelectionContainer {
                 Text(

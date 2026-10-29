@@ -72,16 +72,20 @@ private fun LoginContent(
     onIntent: (LoginIntent) -> Unit,
 ) {
 
-    Column(
+    Box(
         modifier = modifier
             .fillMaxSize()
             .imePadding()
-            .wrapContentWidth()
-            .widthIn(max = 560.dp)
-            .padding(horizontal = 24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .padding(vertical = 32.dp),
+        contentAlignment = Alignment.Center,
     ) {
+        Column(
+            modifier = Modifier
+                .widthIn(max = 520.dp)
+                .fillMaxWidth()
+                .padding(horizontal = 32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
         PhysioLogo(modifier = Modifier.size(112.dp))
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -135,6 +139,8 @@ private fun LoginContent(
             }
         )
 
+        Spacer(modifier = Modifier.height(12.dp))
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -150,6 +156,7 @@ private fun LoginContent(
                 checked = state.rememberSessionEnabled,
                 onCheckedChange = null
             )
+            Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = stringResource(login_remember_session),
                 style = MaterialTheme.typography.bodyMedium
@@ -203,5 +210,6 @@ private fun LoginContent(
         }
 
         Spacer(modifier = Modifier.height(16.dp))
+        }
     }
 }

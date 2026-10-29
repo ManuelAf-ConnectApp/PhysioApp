@@ -36,7 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.connectapp.commonresources.component.LoadingIndicator
+import com.connectapp.commonresources.component.LoadingContentPlaceholder
 import com.connectapp.commonresources.error_user_not_found
 import com.connectapp.commonresources.label_college
 import com.connectapp.commonresources.label_email
@@ -74,7 +74,7 @@ fun ProfileScreen(
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         val account = state.account
         when {
-            state.isLoading -> LoadingIndicator(modifier = Modifier.align(Alignment.Center))
+            state.isLoading -> LoadingContentPlaceholder()
             account == null -> Text(stringResource(error_user_not_found), modifier = Modifier.align(Alignment.Center))
             else -> ProfileContent(
                 account = account,

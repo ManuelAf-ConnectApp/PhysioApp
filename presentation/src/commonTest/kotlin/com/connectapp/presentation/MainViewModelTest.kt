@@ -108,6 +108,16 @@ class MainViewModelTest {
     }
 
     @Test
+    fun `repeated navigation to the visible route does not alter the back stack`() {
+        val viewModel = MainViewModel()
+        viewModel.updateNavigationState(NavigationRoute.HomeRoute)
+
+        viewModel.updateNavigationState(NavigationRoute.HomeRoute)
+
+        assertEquals(listOf(NavigationRoute.HomeRoute), viewModel.navState.value.backStack)
+    }
+
+    @Test
     fun `showSnackBar populates the snack bar state`() {
         val viewModel = MainViewModel()
 

@@ -31,11 +31,17 @@ class MainViewModel(
     val sessionExpiredNotice: StateFlow<Boolean> get() = _sessionExpiredNotice
 
     fun updateNavigationState(navRoute: NavigationRoute) {
-        _navState.update { it.navigate(navRoute) }
+        _navState.update { current ->
+            // StateFlow updates synchronously on the UI thread. Ignoring a repeated destination
+            // makes a double-tap harmless before Compose has removed the previous click target.
+            if (current.route == navRoute) current else current.navigate(navRoute)
+        }
     }
 
     fun replaceCurrentRoute(navRoute: NavigationRoute) {
-        _navState.update { it.replaceCurrent(navRoute) }
+        _navState.update { current ->
+            if (current.route == navRoute) current else current.replaceCurrent(navRoute)
+        }
     }
 
     fun showSnackBar(message: String, actionLabel: String? = null, onAction: (() -> Unit)? = null) {
