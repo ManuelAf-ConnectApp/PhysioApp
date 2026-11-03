@@ -2,13 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [master]
     # A tag push additionally drives the release-* jobs below (see specs/012-release-pipeline-automation) —
     # android/ios below run unchanged either way, the release jobs' `needs:` is what enforces
     # FR-005 (never release a commit that hasn't passed them).
     tags: ['v*.*.*']
   pull_request:
-    branches: [main]
+    branches: [master]
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
